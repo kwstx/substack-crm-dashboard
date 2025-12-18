@@ -21,6 +21,8 @@ const navigation = [
   { name: "Billing", href: "/dashboard/billing" },
   { name: "Reports", href: "/dashboard/analytics" },
   { name: "Connect", href: "/dashboard/outreach" },
+  { name: "Personas", href: "/dashboard/personas" },
+  { name: "Settings", href: "/dashboard/settings" },
 ];
 
 export function DashboardTopNav() {

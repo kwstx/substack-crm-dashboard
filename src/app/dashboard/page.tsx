@@ -201,13 +201,13 @@ export default function DashboardPage() {
             </Card>
 
             <div className="space-y-6">
-              <Card className="border-none shadow-[0_8px_30px_rgb(0,0,0,0.04)] bg-white rounded-3xl p-6">
-                <div className="flex items-center justify-between mb-2">
-                  <CardTitle className="text-lg font-bold">Transactions</CardTitle>
-                  <Button variant="ghost" size="icon" className="rounded-full h-8 w-8">
-                    <MoreHorizontal className="w-4 h-4 text-gray-400" />
-                  </Button>
-                </div>
+            <Card className="border-none shadow-[0_8px_30px_rgb(0,0,0,0.04)] bg-white rounded-3xl p-6 hover:shadow-[0_8px_35px_rgb(0,0,0,0.08)] transition-all cursor-pointer group" onClick={() => window.location.href = '/dashboard/payments'}>
+              <div className="flex items-center justify-between mb-2">
+                <CardTitle className="text-lg font-bold">Transactions</CardTitle>
+                <Button variant="ghost" size="icon" className="rounded-full h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <ArrowUpRight className="w-4 h-4 text-gray-400" />
+                </Button>
+              </div>
                 <div className="flex items-end justify-between">
                   <div>
                     <div className="text-3xl font-bold">106k</div>
@@ -227,13 +227,13 @@ export default function DashboardPage() {
                 </div>
               </Card>
 
-              <Card className="border-none shadow-[0_8px_30px_rgb(0,0,0,0.04)] bg-white rounded-3xl p-6">
-                <div className="flex items-center justify-between mb-2">
-                  <CardTitle className="text-lg font-bold">Customers</CardTitle>
-                  <Button variant="ghost" size="icon" className="rounded-full h-8 w-8">
-                    <MoreHorizontal className="w-4 h-4 text-gray-400" />
-                  </Button>
-                </div>
+                <Card className="border-none shadow-[0_8px_30px_rgb(0,0,0,0.04)] bg-white rounded-3xl p-6 hover:shadow-[0_8px_35px_rgb(0,0,0,0.08)] transition-all cursor-pointer group" onClick={() => window.location.href = '/dashboard/subscribers'}>
+                  <div className="flex items-center justify-between mb-2">
+                    <CardTitle className="text-lg font-bold">Customers</CardTitle>
+                    <Button variant="ghost" size="icon" className="rounded-full h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <ArrowUpRight className="w-4 h-4 text-gray-400" />
+                    </Button>
+                  </div>
                 <div className="flex items-end justify-between">
                   <div>
                     <div className="text-3xl font-bold">1,284</div>
