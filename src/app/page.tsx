@@ -13,54 +13,31 @@ import {
   ArrowRight,
   Sparkles,
   ChevronRight,
+  BarChart,
+  LineChart,
+  Activity,
+  PieChart,
+  Clock,
 } from "lucide-react";
-import Link from "next/link";
 
-const stats = [
-  { label: "Active Creators", value: "2,400+" },
-  { label: "Subscribers Managed", value: "5.2M" },
-  { label: "Engagement Rate Boost", value: "+47%" },
-];
+// ... existing code ...
 
-const recentUsers = [
-  { name: "Sarah Chen", role: "Tech Newsletter", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100" },
-  { name: "Marcus Webb", role: "Finance Writer", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100" },
-  { name: "Elena Rodriguez", role: "Lifestyle Creator", avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100" },
-  { name: "James Liu", role: "Crypto Analyst", avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100" },
-];
-
-const features = [
-  {
-    icon: Users,
-    title: "Smart Segmentation",
-    description: "Automatically group subscribers by engagement, interests, and conversion likelihood.",
-  },
-  {
-    icon: BarChart3,
-    title: "Deep Analytics",
-    description: "Track open rates, clicks, and growth trends with beautiful visual reports.",
-  },
-  {
-    icon: Target,
-    title: "Persona Builder",
-    description: "Create reader personas to understand and personalize content for your audience.",
-  },
-  {
-    icon: MessageSquare,
-    title: "Outreach Hub",
-    description: "Send targeted messages and manage all subscriber conversations in one place.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Growth Insights",
-    description: "Get actionable suggestions to convert free readers into paying subscribers.",
-  },
-  {
-    icon: Zap,
-    title: "Real-time Sync",
-    description: "Automatic data sync with Substack—no manual uploads or CSV exports needed.",
-  },
-];
+const FloatingWidget = ({ children, className, delay = 0 }: { children: React.ReactNode, className: string, delay?: number }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ 
+      opacity: 1, 
+      y: [0, -10, 0],
+    }}
+    transition={{ 
+      opacity: { duration: 0.6, delay },
+      y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay }
+    }}
+    className={`absolute z-10 hidden lg:block ${className}`}
+  >
+    {children}
+  </motion.div>
+);
 
 export default function HomePage() {
   return (
@@ -71,14 +48,105 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
         
         {/* Concentric Arcs */}
-        <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] pointer-events-none">
-          <div className="absolute inset-0 rounded-full border border-violet-500/[0.03] scale-[0.6]" />
-          <div className="absolute inset-0 rounded-full border border-violet-500/[0.05] scale-[0.8]" />
-          <div className="absolute inset-0 rounded-full border border-violet-500/[0.07] scale-[1.0]" />
-          <div className="absolute inset-0 rounded-full border border-violet-500/[0.09] scale-[1.2]" />
+        <div className="absolute top-[15%] left-1/2 -translate-x-1/2 w-[1200px] h-[1200px] pointer-events-none opacity-50">
+          <div className="absolute inset-0 rounded-full border border-violet-500/[0.03] scale-[0.4]" />
+          <div className="absolute inset-0 rounded-full border border-violet-500/[0.05] scale-[0.6]" />
+          <div className="absolute inset-0 rounded-full border border-violet-500/[0.07] scale-[0.8]" />
+          <div className="absolute inset-0 rounded-full border border-violet-500/[0.09] scale-[1.0]" />
         </div>
 
+        {/* Floating Widgets - Positioned relative to the arcs */}
+        <FloatingWidget className="top-[25%] left-[15%]" delay={0.2}>
+          <div className="bg-white/80 backdrop-blur-md border border-border p-3 rounded-xl shadow-xl shadow-violet-500/5 flex flex-col gap-1 w-32">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wider">Rate</span>
+              <Clock className="w-3 h-3 text-violet-500" />
+            </div>
+            <div className="text-lg font-bold">+31%</div>
+            <div className="h-1 w-full bg-secondary rounded-full overflow-hidden">
+              <div className="h-full w-[31%] bg-violet-500" />
+            </div>
+          </div>
+        </FloatingWidget>
+
+        <FloatingWidget className="top-[45%] left-[22%]" delay={0.4}>
+          <div className="bg-white/80 backdrop-blur-md border border-border p-2.5 rounded-xl shadow-xl shadow-violet-500/5">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+              <Target className="w-5 h-5 text-white" />
+            </div>
+          </div>
+        </FloatingWidget>
+
+        <FloatingWidget className="top-[65%] left-[10%]" delay={0.6}>
+          <div className="bg-white/80 backdrop-blur-md border border-border p-3 rounded-xl shadow-xl shadow-violet-500/5 w-40">
+            <div className="text-[10px] font-medium text-muted-foreground mb-1 uppercase tracking-wider">Traffic</div>
+            <div className="flex items-end gap-2 mb-2">
+              <span className="text-lg font-bold">1.57K</span>
+              <span className="text-[10px] text-green-500 font-medium mb-1">+12%</span>
+            </div>
+            <div className="flex items-end gap-1 h-8">
+              {[40, 70, 45, 90, 65, 80, 50].map((h, i) => (
+                <div key={i} className="flex-1 bg-violet-200 rounded-t-sm" style={{ height: `${h}%` }} />
+              ))}
+            </div>
+          </div>
+        </FloatingWidget>
+
+        <FloatingWidget className="top-[20%] right-[15%]" delay={0.3}>
+          <div className="bg-white/80 backdrop-blur-md border border-border p-2 rounded-xl shadow-xl shadow-violet-500/5 flex items-center gap-3">
+            <div className="flex items-center gap-1">
+              {[1, 2, 3, 4, 5].map((i) => (
+                <div key={i} className="w-1 bg-violet-400 rounded-full" style={{ height: `${10 + Math.random() * 20}px` }} />
+              ))}
+            </div>
+            <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center">
+              <Activity className="w-5 h-5 text-blue-600" />
+            </div>
+          </div>
+        </FloatingWidget>
+
+        <FloatingWidget className="top-[50%] right-[20%]" delay={0.5}>
+          <div className="bg-white/80 backdrop-blur-md border border-border p-3 rounded-xl shadow-xl shadow-violet-500/5 flex flex-col items-center gap-1">
+            <div className="relative w-12 h-12">
+              <svg className="w-full h-full" viewBox="0 0 36 36">
+                <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#eee" strokeWidth="3" />
+                <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#8b5cf6" strokeWidth="3" strokeDasharray="53, 100" />
+              </svg>
+              <div className="absolute inset-0 flex items-center justify-center text-[10px] font-bold">53%</div>
+            </div>
+            <span className="text-[9px] font-medium text-muted-foreground uppercase">Progress</span>
+          </div>
+        </FloatingWidget>
+
+        <FloatingWidget className="top-[75%] right-[12%]" delay={0.7}>
+          <div className="bg-white/80 backdrop-blur-md border border-border p-3 rounded-xl shadow-xl shadow-violet-500/5 w-36">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-[10px] font-medium text-muted-foreground uppercase">Data Loading</span>
+              <span className="text-[10px] font-bold text-violet-600">14%</span>
+            </div>
+            <div className="space-y-1.5">
+              <div className="h-1 w-full bg-secondary rounded-full overflow-hidden">
+                <div className="h-full w-[14%] bg-violet-500" />
+              </div>
+              <div className="h-1 w-[80%] bg-secondary rounded-full" />
+              <div className="h-1 w-[60%] bg-secondary rounded-full" />
+            </div>
+          </div>
+        </FloatingWidget>
+
+        <FloatingWidget className="bottom-[10%] left-1/2 -translate-x-1/2" delay={0.8}>
+          <div className="bg-white/80 backdrop-blur-md border border-border p-4 rounded-2xl shadow-xl shadow-violet-500/5 w-64">
+            <div className="text-[10px] font-medium text-muted-foreground mb-3 uppercase tracking-wider">Product Data</div>
+            <div className="flex items-end gap-2 h-20">
+              {[30, 60, 40, 80, 50, 90, 70, 45, 65, 35].map((h, i) => (
+                <div key={i} className="flex-1 bg-gradient-to-t from-violet-500 to-purple-400 rounded-t-md" style={{ height: `${h}%` }} />
+              ))}
+            </div>
+          </div>
+        </FloatingWidget>
+
         {/* Gradient Glows */}
+
         <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-violet-500/10 rounded-full blur-[120px] -z-10" />
         <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[120px] -z-10" />
       </div>
