@@ -20,6 +20,8 @@ import {
   ChevronRight,
   Check,
   ExternalLink,
+  Settings,
+  Sparkles,
 } from "lucide-react";
 
 const integrations = [
@@ -48,278 +50,181 @@ const integrations = [
 
 export default function SettingsPage() {
   return (
-    <div className="space-y-6 max-w-4xl">
-      <div>
-        <h1 className="font-display text-3xl font-bold tracking-tight">Settings</h1>
-        <p className="text-muted-foreground mt-1">Manage your account and preferences</p>
+    <div className="space-y-6 max-w-5xl mx-auto">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <h1 className="text-4xl font-bold tracking-tight text-gray-900">Settings</h1>
+          <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center border border-gray-200 cursor-pointer hover:bg-gray-200 transition-colors">
+            <Settings className="w-4 h-4 text-gray-500" />
+          </div>
+        </div>
       </div>
 
-      <Card className="border-border/50 shadow-sm">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <User className="w-5 h-5 text-violet-600" />
-            Profile
-          </CardTitle>
-          <CardDescription>Your personal information and preferences</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="flex items-center gap-6">
-            <Avatar className="w-20 h-20">
-              <AvatarImage src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200" />
-              <AvatarFallback>JD</AvatarFallback>
-            </Avatar>
-            <div>
-              <Button variant="outline" size="sm" className="rounded-lg">
-                Change Photo
-              </Button>
-              <p className="text-xs text-muted-foreground mt-2">JPG, PNG or GIF. Max 2MB.</p>
+      <div className="grid grid-cols-12 gap-6">
+        <div className="col-span-12 lg:col-span-8 space-y-6">
+          <Card className="border-none shadow-[0_8px_30px_rgb(0,0,0,0.04)] bg-white rounded-3xl p-8">
+            <div className="flex items-center justify-between mb-8">
+              <CardTitle className="text-xl font-bold">Profile Settings</CardTitle>
+              <Badge variant="outline" className="rounded-full border-gray-100 text-[10px] font-bold uppercase tracking-wider px-3 py-1">
+                Public Profile
+              </Badge>
             </div>
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="text-sm font-medium mb-1.5 block">Full Name</label>
-              <input
-                type="text"
-                defaultValue="John Doe"
-                className="w-full h-10 px-3 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500"
-              />
-            </div>
-            <div>
-              <label className="text-sm font-medium mb-1.5 block">Email</label>
-              <input
-                type="email"
-                defaultValue="john@newsletter.co"
-                className="w-full h-10 px-3 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500"
-              />
-            </div>
-            <div>
-              <label className="text-sm font-medium mb-1.5 block">Newsletter Name</label>
-              <input
-                type="text"
-                defaultValue="The Tech Insider"
-                className="w-full h-10 px-3 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500"
-              />
-            </div>
-            <div>
-              <label className="text-sm font-medium mb-1.5 block">Timezone</label>
-              <input
-                type="text"
-                defaultValue="America/New_York (EST)"
-                className="w-full h-10 px-3 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500"
-              />
-            </div>
-          </div>
-          <Button className="rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white">
-            Save Changes
-          </Button>
-        </CardContent>
-      </Card>
-
-      <Card className="border-border/50 shadow-sm">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Bell className="w-5 h-5 text-violet-600" />
-            Notifications
-          </CardTitle>
-          <CardDescription>Configure how you want to be notified</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="flex items-center justify-between p-3 rounded-xl bg-secondary/30">
-            <div className="flex items-center gap-3">
-              <Mail className="w-5 h-5 text-muted-foreground" />
-              <div>
-                <p className="text-sm font-medium">Email Notifications</p>
-                <p className="text-xs text-muted-foreground">Receive updates via email</p>
-              </div>
-            </div>
-            <Switch defaultChecked />
-          </div>
-          <div className="flex items-center justify-between p-3 rounded-xl bg-secondary/30">
-            <div className="flex items-center gap-3">
-              <Smartphone className="w-5 h-5 text-muted-foreground" />
-              <div>
-                <p className="text-sm font-medium">Push Notifications</p>
-                <p className="text-xs text-muted-foreground">Get instant alerts on your device</p>
-              </div>
-            </div>
-            <Switch />
-          </div>
-          <div className="flex items-center justify-between p-3 rounded-xl bg-secondary/30">
-            <div className="flex items-center gap-3">
-              <Globe className="w-5 h-5 text-muted-foreground" />
-              <div>
-                <p className="text-sm font-medium">Weekly Digest</p>
-                <p className="text-xs text-muted-foreground">Weekly summary of your metrics</p>
-              </div>
-            </div>
-            <Switch defaultChecked />
-          </div>
-        </CardContent>
-      </Card>
-
-      <Card className="border-border/50 shadow-sm">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Link2 className="w-5 h-5 text-violet-600" />
-            Integrations
-          </CardTitle>
-          <CardDescription>Connect external services and tools</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          {integrations.map((integration) => (
-            <div
-              key={integration.name}
-              className="flex items-center justify-between p-4 rounded-xl border border-border hover:bg-secondary/30 transition-colors"
-            >
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center overflow-hidden">
-                  <img
-                    src={integration.icon}
-                    alt={integration.name}
-                    className="w-6 h-6 object-contain"
-                  />
+            
+            <div className="flex items-center gap-8 mb-10">
+              <div className="relative group">
+                <Avatar className="w-24 h-24 ring-4 ring-gray-50 shadow-xl">
+                  <AvatarImage src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200" />
+                  <AvatarFallback>JD</AvatarFallback>
+                </Avatar>
+                <div className="absolute inset-0 bg-black/40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer">
+                  <Sparkles className="w-6 h-6 text-white" />
                 </div>
-                <div>
-                  <div className="flex items-center gap-2">
-                    <p className="font-medium">{integration.name}</p>
-                    {integration.connected && (
-                      <Badge variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-200 text-xs">
-                        <Check className="w-3 h-3 mr-1" />
-                        Connected
-                      </Badge>
-                    )}
+              </div>
+              <div className="space-y-2">
+                <Button variant="outline" size="sm" className="rounded-xl border-gray-200 shadow-sm font-bold text-gray-600">
+                  Change Avatar
+                </Button>
+                <p className="text-xs text-gray-400 font-medium">JPG, PNG or GIF. Max 2MB.</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">Full Name</label>
+                <input
+                  type="text"
+                  defaultValue="John Doe"
+                  className="w-full h-12 px-4 rounded-2xl border border-gray-100 bg-gray-50/50 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 transition-all"
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">Email Address</label>
+                <input
+                  type="email"
+                  defaultValue="john@stackly.io"
+                  className="w-full h-12 px-4 rounded-2xl border border-gray-100 bg-gray-50/50 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 transition-all"
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">Newsletter Name</label>
+                <input
+                  type="text"
+                  defaultValue="The Tech Insider"
+                  className="w-full h-12 px-4 rounded-2xl border border-gray-100 bg-gray-50/50 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 transition-all"
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">Timezone</label>
+                <input
+                  type="text"
+                  defaultValue="UTC-5 (EST)"
+                  className="w-full h-12 px-4 rounded-2xl border border-gray-100 bg-gray-50/50 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 transition-all"
+                />
+              </div>
+            </div>
+            
+            <div className="mt-10 pt-8 border-t border-gray-50">
+              <Button className="rounded-2xl bg-black text-white px-8 py-6 font-bold shadow-xl shadow-black/10 hover:bg-gray-900 transition-all">
+                Save Profile Changes
+              </Button>
+            </div>
+          </Card>
+
+          <Card className="border-none shadow-[0_8px_30px_rgb(0,0,0,0.04)] bg-white rounded-3xl p-8">
+            <div className="flex items-center justify-between mb-8">
+              <CardTitle className="text-xl font-bold">Connected Tools</CardTitle>
+              <Button variant="ghost" size="sm" className="font-bold text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-full px-4">
+                Explore Marketplace
+              </Button>
+            </div>
+            <div className="space-y-4">
+              {integrations.map((integration) => (
+                <div
+                  key={integration.name}
+                  className="flex items-center justify-between p-6 rounded-3xl border border-gray-50 hover:border-blue-100 hover:bg-blue-50/30 transition-all group"
+                >
+                  <div className="flex items-center gap-5">
+                    <div className="w-14 h-14 rounded-2xl bg-white shadow-sm border border-gray-100 flex items-center justify-center overflow-hidden p-3 group-hover:scale-105 transition-transform">
+                      <img
+                        src={integration.icon}
+                        alt={integration.name}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <p className="font-bold text-gray-900">{integration.name}</p>
+                        {integration.connected && (
+                          <div className="w-2 h-2 rounded-full bg-green-500" />
+                        )}
+                      </div>
+                      <p className="text-xs text-gray-400 font-medium">{integration.description}</p>
+                    </div>
                   </div>
-                  <p className="text-xs text-muted-foreground">{integration.description}</p>
-                  {integration.lastSync && (
-                    <p className="text-xs text-muted-foreground mt-1">
-                      Last synced: {integration.lastSync}
-                    </p>
-                  )}
+                  <Button
+                    variant={integration.connected ? "outline" : "default"}
+                    size="sm"
+                    className={`rounded-xl px-6 font-bold transition-all ${
+                      integration.connected 
+                        ? "border-gray-200 text-gray-600 hover:bg-white" 
+                        : "bg-blue-600 text-white shadow-lg shadow-blue-500/20 hover:bg-blue-700"
+                    }`}
+                  >
+                    {integration.connected ? "Configure" : "Connect"}
+                  </Button>
                 </div>
-              </div>
-              <Button
-                variant={integration.connected ? "outline" : "default"}
-                size="sm"
-                className={`rounded-lg ${
-                  !integration.connected
-                    ? "bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white"
-                    : ""
-                }`}
-              >
-                {integration.connected ? "Manage" : "Connect"}
-                <ChevronRight className="w-4 h-4 ml-1" />
-              </Button>
+              ))}
             </div>
-          ))}
-        </CardContent>
-      </Card>
+          </Card>
+        </div>
 
-      <Card className="border-border/50 shadow-sm">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <CreditCard className="w-5 h-5 text-violet-600" />
-            Billing
-          </CardTitle>
-          <CardDescription>Manage your subscription and payment methods</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="p-4 rounded-xl bg-gradient-to-r from-violet-500/10 to-purple-500/10 border border-violet-200 mb-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="font-semibold">Pro Plan</span>
-                  <Badge className="bg-violet-100 text-violet-700 hover:bg-violet-100">Active</Badge>
+        <div className="col-span-12 lg:col-span-4 space-y-6">
+          <Card className="border-none shadow-[0_8px_30px_rgb(0,0,0,0.04)] bg-white rounded-3xl p-8">
+            <CardTitle className="text-xl font-bold mb-8">Notifications</CardTitle>
+            <div className="space-y-6">
+              {[
+                { label: "Email Alerts", icon: Mail, checked: true },
+                { label: "Push Notifications", icon: Smartphone, checked: false },
+                { label: "Weekly Digest", icon: Globe, checked: true },
+              ].map((item) => (
+                <div key={item.label} className="flex items-center justify-between p-4 rounded-2xl bg-gray-50 border border-gray-100">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center border border-gray-100">
+                      <item.icon className="w-4 h-4 text-gray-400" />
+                    </div>
+                    <span className="text-sm font-bold text-gray-700">{item.label}</span>
+                  </div>
+                  <Switch defaultChecked={item.checked} className="data-[state=checked]:bg-blue-600" />
                 </div>
-                <p className="text-sm text-muted-foreground mt-1">
-                  $29/month • Renews on Jan 15, 2025
+              ))}
+            </div>
+          </Card>
+
+          <Card className="border-none shadow-[0_8px_30px_rgb(0,0,0,0.04)] bg-white rounded-3xl p-8 relative overflow-hidden group">
+            <div className="absolute inset-0 bg-gradient-to-br from-pink-600 via-rose-600 to-orange-600 opacity-95 group-hover:scale-110 transition-transform duration-700" />
+            <div className="relative z-10 space-y-6 text-white">
+              <div className="bg-white/20 backdrop-blur-md w-12 h-12 rounded-2xl flex items-center justify-center border border-white/20">
+                <Trash2 className="w-6 h-6" />
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-2xl font-bold">Danger Zone</h3>
+                <p className="text-white/80 text-sm font-medium leading-relaxed">
+                  Irreversible actions. Deleting your account will permanently remove all your data.
                 </p>
               </div>
-              <Button variant="outline" size="sm" className="rounded-lg">
-                Manage Plan
-              </Button>
-            </div>
-          </div>
-          <div className="flex items-center justify-between p-3 rounded-xl bg-secondary/30">
-            <div className="flex items-center gap-3">
-              <CreditCard className="w-5 h-5 text-muted-foreground" />
-              <div>
-                <p className="text-sm font-medium">•••• •••• •••• 4242</p>
-                <p className="text-xs text-muted-foreground">Expires 12/2025</p>
+              <div className="space-y-3">
+                <Button variant="outline" className="w-full rounded-xl bg-white/10 border-white/20 text-white hover:bg-white/20 font-bold">
+                  <Download className="w-4 h-4 mr-2" />
+                  Export All Data
+                </Button>
+                <Button variant="destructive" className="w-full rounded-xl bg-white text-rose-600 hover:bg-white/90 font-bold border-none shadow-xl shadow-black/10">
+                  Delete Account
+                </Button>
               </div>
             </div>
-            <Button variant="ghost" size="sm" className="text-xs">
-              Update
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
-
-      <Card className="border-border/50 shadow-sm">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Shield className="w-5 h-5 text-violet-600" />
-            Security
-          </CardTitle>
-          <CardDescription>Protect your account</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="flex items-center justify-between p-3 rounded-xl bg-secondary/30">
-            <div className="flex items-center gap-3">
-              <Key className="w-5 h-5 text-muted-foreground" />
-              <div>
-                <p className="text-sm font-medium">Password</p>
-                <p className="text-xs text-muted-foreground">Last changed 3 months ago</p>
-              </div>
-            </div>
-            <Button variant="outline" size="sm" className="rounded-lg">
-              Change
-            </Button>
-          </div>
-          <div className="flex items-center justify-between p-3 rounded-xl bg-secondary/30">
-            <div className="flex items-center gap-3">
-              <Smartphone className="w-5 h-5 text-muted-foreground" />
-              <div>
-                <p className="text-sm font-medium">Two-Factor Authentication</p>
-                <p className="text-xs text-muted-foreground">Add an extra layer of security</p>
-              </div>
-            </div>
-            <Button variant="outline" size="sm" className="rounded-lg">
-              Enable
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
-
-      <Card className="border-border/50 shadow-sm border-rose-200">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-rose-600">
-            <Trash2 className="w-5 h-5" />
-            Danger Zone
-          </CardTitle>
-          <CardDescription>Irreversible actions</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="flex items-center justify-between p-3 rounded-xl border border-rose-200 bg-rose-50">
-            <div>
-              <p className="text-sm font-medium">Export All Data</p>
-              <p className="text-xs text-muted-foreground">Download all your subscriber data</p>
-            </div>
-            <Button variant="outline" size="sm" className="rounded-lg">
-              <Download className="w-4 h-4 mr-1" />
-              Export
-            </Button>
-          </div>
-          <div className="flex items-center justify-between p-3 rounded-xl border border-rose-200 bg-rose-50">
-            <div>
-              <p className="text-sm font-medium text-rose-600">Delete Account</p>
-              <p className="text-xs text-muted-foreground">Permanently delete your account and all data</p>
-            </div>
-            <Button variant="destructive" size="sm" className="rounded-lg">
-              Delete Account
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
+          </Card>
+        </div>
+      </div>
     </div>
   );
 }
