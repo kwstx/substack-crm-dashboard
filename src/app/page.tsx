@@ -109,31 +109,73 @@ const DashboardPreview = () => (
         <div className="grid grid-cols-3 gap-6">
           {/* Main Chart Card */}
           <div className="col-span-2 space-y-6">
-            <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-50">
-              <div className="flex items-center justify-between mb-6">
-                <span className="text-sm font-bold text-gray-900">Revenue Growth</span>
-                <div className="flex gap-2">
-                  <div className="w-2 h-2 rounded-full bg-violet-500" />
-                  <div className="w-2 h-2 rounded-full bg-blue-400" />
+            <div className="bg-white rounded-[2.5rem] p-8 shadow-sm border border-gray-100/50">
+              <div className="flex items-center justify-between mb-8">
+                <div className="space-y-1">
+                  <span className="text-sm font-bold text-gray-900">Activity</span>
+                  <p className="text-[10px] text-gray-400 font-medium">You logged <span className="text-gray-900">32.2 hours</span> this<br/>week — up <span className="text-gray-900">4.3 hours</span> from<br/>last month.</p>
+                </div>
+                <div className="flex gap-1.5 bg-gray-50 p-1 rounded-xl border border-gray-100">
+                  {['Week', 'Month', 'Year'].map((t, i) => (
+                    <button key={t} className={`px-3 py-1 text-[10px] font-bold rounded-lg transition-all ${i === 0 ? 'bg-white shadow-sm text-gray-900' : 'text-gray-400'}`}>
+                      {t}
+                    </button>
+                  ))}
                 </div>
               </div>
-              <div className="h-48 w-full relative flex items-end gap-2 px-2">
-                {[45, 60, 40, 85, 65, 90, 75, 55, 80, 70, 95, 85].map((h, i) => (
-                  <div key={i} className="flex-1 relative group">
-                    <div 
-                      className={`w-full rounded-t-lg transition-all duration-500 relative ${
-                        i === 10 ? 'bg-gradient-to-t from-violet-600 to-violet-400 shadow-[0_0_20px_rgba(139,92,246,0.3)]' : 'bg-gradient-to-t from-gray-100 to-gray-50'
-                      } group-hover:from-violet-200 group-hover:to-violet-100`}
-                      style={{ height: `${h}%` }}
-                    >
-                    </div>
+              
+              <div className="flex items-start gap-8">
+                <div className="pt-4">
+                  <div className="text-4xl font-bold tracking-tight text-gray-900">32.2h</div>
+                  <div className="mt-2 flex items-center gap-1.5 px-2 py-0.5 bg-green-50 rounded-full border border-green-100 w-fit">
+                    <TrendingUp className="w-3 h-3 text-green-500" />
+                    <span className="text-[10px] font-bold text-green-500">15%</span>
+                    <span className="text-[10px] font-medium text-gray-400">vs last month</span>
                   </div>
-                ))}
-              </div>
-              <div className="flex justify-between mt-4 px-1">
-                {['Jan', 'Mar', 'May', 'Jul', 'Sep', 'Nov'].map(m => (
-                  <span key={m} className="text-[10px] font-bold text-gray-300 uppercase">{m}</span>
-                ))}
+                </div>
+
+                <div className="flex-1">
+                  <div className="h-44 w-full relative flex items-end gap-3 px-2">
+                    {[45, 60, 85, 45, 75, 55, 65].map((h, i) => (
+                      <div key={i} className="flex-1 relative group h-full flex flex-col justify-end">
+                        {/* Tooltip on Wednesday (i=2) */}
+                        {i === 2 && (
+                          <div className="absolute -top-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 z-10">
+                            <div className="bg-gray-900 text-white text-[9px] font-bold px-2 py-1 rounded-md shadow-lg">
+                              8.2h
+                            </div>
+                            <div className="w-1.5 h-1.5 rounded-full border-2 border-blue-500 bg-white" />
+                          </div>
+                        )}
+                        
+                        {/* Phantom Bar with Stripes */}
+                        <div 
+                          className="absolute inset-x-0 top-0 bottom-0 rounded-full opacity-40 transition-opacity group-hover:opacity-60"
+                          style={{
+                            background: `repeating-linear-gradient(135deg, transparent, transparent 4px, #3b82f6 4px, #3b82f6 5px)`,
+                            opacity: 0.1
+                          }}
+                        />
+                        
+                        {/* Blue Candle */}
+                        <div 
+                          className={`w-full rounded-full transition-all duration-700 relative z-0 bg-gradient-to-t from-blue-600 to-blue-400 shadow-[0_4px_12px_rgba(37,99,235,0.2)] ${
+                            i === 2 ? 'ring-4 ring-blue-500/10' : ''
+                          }`}
+                          style={{ height: `${h}%` }}
+                        >
+                          {/* Inner Shine */}
+                          <div className="absolute inset-0 rounded-full bg-gradient-to-b from-white/20 to-transparent pointer-events-none" />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex justify-between mt-4 px-1">
+                    {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(m => (
+                      <span key={m} className="text-[10px] font-bold text-gray-300 uppercase tracking-wider">{m}</span>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
 
