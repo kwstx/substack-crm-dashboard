@@ -19,20 +19,13 @@ import {
   Activity,
   PieChart,
   Clock,
+  LayoutDashboard,
+  CreditCard,
+  Wallet,
+  Settings,
+  MoreHorizontal,
+  Plus,
 } from "lucide-react";
-
-const stats = [
-  { label: "Active Users", value: "12K+" },
-  { label: "Subscribers Managed", value: "2.4M" },
-  { label: "Open Rate", value: "48%" },
-  { label: "Growth", value: "+22%" },
-];
-
-const recentUsers = [
-  { name: "Sarah Chen", role: "Tech Writer", avatar: "https://i.pravatar.cc/150?u=sarah" },
-  { name: "Marcus Miller", role: "Business Strategist", avatar: "https://i.pravatar.cc/150?u=marcus" },
-  { name: "Elena Rodriguez", role: "Lifestyle Blogger", avatar: "https://i.pravatar.cc/150?u=elena" },
-];
 
 const features = [
   {
@@ -84,6 +77,157 @@ const FloatingWidget = ({ children, className, delay = 0 }: { children: React.Re
   </motion.div>
 );
 
+const DashboardPreview = () => (
+  <motion.div
+    initial={{ opacity: 0, y: 40 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ delay: 0.5, duration: 0.8 }}
+    className="relative w-full max-w-5xl mx-auto mt-20"
+  >
+    {/* Mac Window Container */}
+    <div className="bg-white rounded-[2.5rem] shadow-[0_32px_64px_-12px_rgba(0,0,0,0.1)] border border-gray-100 overflow-hidden">
+      {/* Top Bar */}
+      <div className="h-14 border-b border-gray-50 flex items-center px-6 justify-between bg-white/50 backdrop-blur-md">
+        <div className="flex gap-2">
+          <div className="w-3 h-3 rounded-full bg-red-400/20" />
+          <div className="w-3 h-3 rounded-full bg-yellow-400/20" />
+          <div className="w-3 h-3 rounded-full bg-green-400/20" />
+        </div>
+        <div className="flex items-center gap-6">
+          <div className="flex items-center gap-1.5 px-3 py-1 bg-gray-50 rounded-full border border-gray-100">
+            <div className="w-2 h-2 rounded-full bg-violet-500 animate-pulse" />
+            <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Live: Jan 01 - Jul 31</span>
+          </div>
+          <div className="flex gap-4">
+            {['Home', 'Payments', 'Subscribers', 'Analytics'].map((item) => (
+              <span key={item} className="text-xs font-medium text-gray-400 cursor-default">{item}</span>
+            ))}
+          </div>
+        </div>
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 rounded-full bg-gray-50 border border-gray-100" />
+        </div>
+      </div>
+
+      {/* Dashboard Content */}
+      <div className="p-8 bg-[#FAFAFB]">
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <h3 className="text-2xl font-bold tracking-tight text-gray-900">Good morning, Creator</h3>
+            <p className="text-sm text-gray-400 font-medium">Here's what's happening with your newsletter today.</p>
+          </div>
+          <Button size="sm" className="rounded-full bg-black hover:bg-black/90 text-white px-5">
+            <Plus className="w-4 h-4 mr-1.5" />
+            New Campaign
+          </Button>
+        </div>
+
+        <div className="grid grid-cols-3 gap-6">
+          {/* Main Chart Card */}
+          <div className="col-span-2 space-y-6">
+            <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-50">
+              <div className="flex items-center justify-between mb-6">
+                <span className="text-sm font-bold text-gray-900">Revenue Growth</span>
+                <div className="flex gap-2">
+                  <div className="w-2 h-2 rounded-full bg-violet-500" />
+                  <div className="w-2 h-2 rounded-full bg-blue-400" />
+                </div>
+              </div>
+              <div className="h-48 w-full flex items-end gap-2 px-2">
+                {[45, 60, 40, 85, 65, 90, 75, 55, 80, 70, 95, 85].map((h, i) => (
+                  <div key={i} className="flex-1 relative group">
+                    <div 
+                      className={`w-full rounded-t-lg transition-all duration-500 bg-gradient-to-t ${
+                        i === 10 ? 'from-violet-600 to-violet-400' : 'from-gray-100 to-gray-50'
+                      }`}
+                      style={{ height: `${h}%` }}
+                    />
+                  </div>
+                ))}
+              </div>
+              <div className="flex justify-between mt-4 px-1">
+                {['Jan', 'Mar', 'May', 'Jul', 'Sep', 'Nov'].map(m => (
+                  <span key={m} className="text-[10px] font-bold text-gray-300 uppercase">{m}</span>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-6">
+              <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-50">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">Subscribers</span>
+                  <Users className="w-4 h-4 text-blue-500" />
+                </div>
+                <div className="text-3xl font-bold text-gray-900">12,842</div>
+                <div className="mt-2 flex items-center gap-1.5">
+                  <span className="text-xs font-bold text-green-500">+12%</span>
+                  <span className="text-[10px] font-medium text-gray-400">vs last month</span>
+                </div>
+              </div>
+              <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-50">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">Open Rate</span>
+                  <TrendingUp className="w-4 h-4 text-violet-500" />
+                </div>
+                <div className="text-3xl font-bold text-gray-900">48.6%</div>
+                <div className="mt-2 flex items-center gap-1.5">
+                  <span className="text-xs font-bold text-green-500">+4.2%</span>
+                  <span className="text-[10px] font-medium text-gray-400">vs average</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Cards */}
+          <div className="space-y-6">
+            <div className="bg-gradient-to-br from-violet-600 to-purple-600 rounded-3xl p-6 text-white shadow-lg shadow-violet-200">
+              <div className="text-xs font-bold opacity-80 uppercase tracking-wider mb-2">Total Volume</div>
+              <div className="text-4xl font-bold mb-6">$42,500</div>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center text-xs font-bold">
+                  <span className="opacity-70">Payouts</span>
+                  <span>$38,200</span>
+                </div>
+                <div className="h-1.5 w-full bg-white/20 rounded-full overflow-hidden">
+                  <div className="h-full w-[85%] bg-white rounded-full shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-50">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">Top Personas</span>
+                <MoreHorizontal className="w-4 h-4 text-gray-300" />
+              </div>
+              <div className="space-y-4">
+                {[
+                  { name: 'Tech Leads', val: 75, color: 'bg-violet-500' },
+                  { name: 'Founders', val: 45, color: 'bg-blue-400' },
+                  { name: 'Writers', val: 30, color: 'bg-pink-400' }
+                ].map(p => (
+                  <div key={p.name} className="space-y-2">
+                    <div className="flex justify-between text-[11px] font-bold">
+                      <span className="text-gray-900">{p.name}</span>
+                      <span className="text-gray-400">{p.val}%</span>
+                    </div>
+                    <div className="h-1.5 w-full bg-gray-50 rounded-full overflow-hidden">
+                      <div className={`h-full ${p.color} rounded-full`} style={{ width: `${p.val}%` }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Decorative Elements */}
+    <div className="absolute -top-10 -right-10 w-40 h-40 bg-violet-500/10 rounded-full blur-3xl -z-10 animate-pulse" />
+    <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl -z-10 animate-pulse" />
+  </motion.div>
+);
+
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-background relative overflow-hidden">
@@ -101,7 +245,6 @@ export default function HomePage() {
         </div>
 
         {/* Gradient Glows */}
-
         <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-violet-500/10 rounded-full blur-[120px] -z-10" />
         <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[120px] -z-10" />
       </div>
@@ -148,7 +291,7 @@ export default function HomePage() {
       <main>
         <section className="pt-32 pb-20 px-6 relative overflow-visible">
           <div className="max-w-6xl mx-auto relative">
-            {/* Floating Widgets - Positioned around the hero text */}
+            {/* Floating Widgets */}
             <FloatingWidget className="-left-12 top-[10%]" delay={0.2}>
               <div className="bg-white/80 backdrop-blur-md border border-border p-3 rounded-xl shadow-xl shadow-violet-500/5 flex flex-col gap-1 w-32">
                 <div className="flex items-center justify-between">
@@ -251,7 +394,7 @@ export default function HomePage() {
                 Segment audiences, track engagement, and boost conversions—all in one place.
               </p>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <div className="relative w-full sm:w-auto">
                   <input
                     type="email"
@@ -267,57 +410,9 @@ export default function HomePage() {
                   </Button>
                 </div>
               </div>
-
-              <div className="flex flex-wrap items-center justify-center gap-8 mb-12">
-                {stats.map((stat, i) => (
-                  <motion.div
-                    key={stat.label}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 + i * 0.1 }}
-                    className="text-center"
-                  >
-                    <div className="text-2xl font-bold font-display bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">
-                      {stat.value}
-                    </div>
-                    <div className="text-sm text-muted-foreground">{stat.label}</div>
-                  </motion.div>
-                ))}
-              </div>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="bg-background rounded-2xl border border-border shadow-2xl shadow-violet-500/5 p-6 max-w-2xl mx-auto"
-            >
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-sm font-medium text-muted-foreground">Popular creators using Stackly</span>
-                <span className="text-xs text-violet-600 font-medium">7,568 subscribers managed</span>
-              </div>
-              <div className="space-y-3">
-                {recentUsers.map((user, i) => (
-                  <motion.div
-                    key={user.name}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.5 + i * 0.1 }}
-                    className="flex items-center gap-3 p-3 rounded-xl hover:bg-secondary/60 transition-colors cursor-pointer group"
-                  >
-                    <Avatar className="w-10 h-10 ring-2 ring-violet-500/20">
-                      <AvatarImage src={user.avatar} alt={user.name} />
-                      <AvatarFallback>{user.name[0]}</AvatarFallback>
-                    </Avatar>
-                    <div className="flex-1">
-                      <div className="font-medium text-sm">{user.name}</div>
-                      <div className="text-xs text-muted-foreground">{user.role}</div>
-                    </div>
-                    <ChevronRight className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
+            <DashboardPreview />
           </div>
         </section>
 
