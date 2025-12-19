@@ -2,12 +2,42 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Sparkles, ArrowRight, Mail, Lock, Eye, EyeOff } from "lucide-react";
+import { Sparkles, ArrowRight, Mail, Lock, Eye, EyeOff, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { register, authenticate } from "@/actions/auth";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
+  async function handleSubmit(formData: FormData) {
+    setLoading(true);
+    if (isLogin) {
+      const res = await authenticate(undefined, formData);
+      if (res) {
+        toast.error(res);
+        setLoading(false);
+      } else {
+        // Success redirect handled by NextAuth/action (usually) or we force it here if needed
+        // But authenticate() usually throws redirect unless callbackUrl is handled
+      }
+    } else {
+      const res = await register(formData);
+      if (res?.error) {
+        toast.error(res.error);
+        setLoading(false);
+      } else {
+        toast.success("Account created! Please log in.");
+        setIsLogin(true);
+        setLoading(false);
+      }
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-violet-50 via-background to-purple-50 flex items-center justify-center p-6">
@@ -24,15 +54,17 @@ export default function LoginPage() {
             </div>
             <span className="font-display text-2xl font-bold tracking-tight">Stackly</span>
           </Link>
-          <h1 className="font-display text-3xl font-bold tracking-tight">Welcome back</h1>
+          <h1 className="font-display text-3xl font-bold tracking-tight">
+            {isLogin ? "Welcome back" : "Create an account"}
+          </h1>
           <p className="text-muted-foreground mt-2">
-            Sign in to access your subscriber dashboard
+            {isLogin ? "Sign in to access your subscriber dashboard" : "Get started with your free trial"}
           </p>
         </div>
 
         <Card className="border-border/50 shadow-xl bg-background/80 backdrop-blur-sm">
           <CardContent className="p-6 space-y-6">
-            <Button variant="outline" className="w-full h-12 rounded-xl font-medium">
+            <Button variant="outline" className="w-full h-12 rounded-xl font-medium" disabled={loading}>
               <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
                 <path
                   fill="currentColor"
@@ -63,14 +95,31 @@ export default function LoginPage() {
               </div>
             </div>
 
-            <form className="space-y-4">
+            <form action={handleSubmit} className="space-y-4">
+              {!isLogin && (
+                <div>
+                  <label className="text-sm font-medium mb-1.5 block">Name</label>
+                  <div className="relative">
+                    <input
+                      name="name"
+                      type="text"
+                      placeholder="John Doe"
+                      required
+                      className="w-full h-12 px-4 rounded-xl border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500"
+                    />
+                  </div>
+                </div>
+              )}
+
               <div>
                 <label className="text-sm font-medium mb-1.5 block">Email</label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                   <input
+                    name="email"
                     type="email"
                     placeholder="you@example.com"
+                    required
                     className="w-full h-12 pl-10 pr-4 rounded-xl border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500"
                   />
                 </div>
@@ -79,15 +128,19 @@ export default function LoginPage() {
               <div>
                 <div className="flex items-center justify-between mb-1.5">
                   <label className="text-sm font-medium">Password</label>
-                  <Link href="#" className="text-sm text-violet-600 hover:text-violet-700">
-                    Forgot password?
-                  </Link>
+                  {isLogin && (
+                    <Link href="#" className="text-sm text-violet-600 hover:text-violet-700">
+                      Forgot password?
+                    </Link>
+                  )}
                 </div>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                   <input
+                    name="password"
                     type={showPassword ? "text" : "password"}
                     placeholder="••••••••"
+                    required
                     className="w-full h-12 pl-10 pr-12 rounded-xl border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500"
                   />
                   <button
@@ -100,24 +153,36 @@ export default function LoginPage() {
                 </div>
               </div>
 
-              <Link href="/dashboard">
-                <Button
-                  type="button"
-                  className="w-full h-12 rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white font-medium"
-                >
-                  Sign In
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-              </Link>
+              {!isLogin && (
+                <div className="text-sm">
+                  <label className="text-sm font-medium mb-1.5 block">Substack URL (Optional)</label>
+                  <input
+                    name="substackUrl"
+                    type="url"
+                    placeholder="https://yourname.substack.com"
+                    className="w-full h-12 px-4 rounded-xl border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500"
+                  />
+                </div>
+              )}
+
+              <Button
+                type="submit"
+                disabled={loading}
+                className="w-full h-12 rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white font-medium"
+              >
+                {loading && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+                {isLogin ? "Sign In" : "Create Account"}
+                {!loading && <ArrowRight className="w-4 h-4 ml-2" />}
+              </Button>
             </form>
           </CardContent>
         </Card>
 
         <p className="text-center text-sm text-muted-foreground mt-6">
-          Don&apos;t have an account?{" "}
-          <Link href="/dashboard" className="text-violet-600 hover:text-violet-700 font-medium">
-            Start free trial
-          </Link>
+          {isLogin ? "Don't have an account? " : "Already have an account? "}
+          <button onClick={() => setIsLogin(!isLogin)} className="text-violet-600 hover:text-violet-700 font-medium underline-offset-4 hover:underline">
+            {isLogin ? "Start free trial" : "Log in"}
+          </button>
         </p>
       </div>
     </div>

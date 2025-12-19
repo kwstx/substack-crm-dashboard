@@ -13,15 +13,25 @@ import {
   Sparkles,
   LogOut,
   ChevronDown,
+  CreditCard,
+  Wallet,
+  ShoppingBag,
+  Receipt,
+  Home,
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Logo } from "@/components/ui/logo";
 
 const navigation = [
-  { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-  { name: "Subscribers", href: "/dashboard/subscribers", icon: Users },
+  { name: "Home", href: "/dashboard", icon: Home },
+  { name: "Payments", href: "/dashboard/payments", icon: CreditCard },
+  { name: "Balances", href: "/dashboard/balances", icon: Wallet },
+  { name: "Customers", href: "/dashboard/subscribers", icon: Users },
+  { name: "Products", href: "/dashboard/products", icon: ShoppingBag },
+  { name: "Billing", href: "/dashboard/billing", icon: Receipt },
+  { name: "Reports", href: "/dashboard/analytics", icon: BarChart3 },
+  { name: "Connect", href: "/dashboard/outreach", icon: MessageSquare },
   { name: "Personas", href: "/dashboard/personas", icon: UserCircle },
-  { name: "Analytics", href: "/dashboard/analytics", icon: BarChart3 },
-  { name: "Outreach", href: "/dashboard/outreach", icon: MessageSquare },
 ];
 
 const bottomNav = [
@@ -35,9 +45,7 @@ export function DashboardSidebar() {
     <aside className="fixed left-0 top-0 h-screen w-64 bg-card border-r border-border flex flex-col">
       <div className="p-6">
         <Link href="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-600 to-purple-600 flex items-center justify-center">
-            <Sparkles className="w-4 h-4 text-white" />
-          </div>
+          <Logo className="w-8 h-8 text-violet-600" />
           <span className="font-display text-xl font-bold tracking-tight">Stackly</span>
         </Link>
       </div>

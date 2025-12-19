@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import {
@@ -12,20 +11,13 @@ import {
   TrendingUp,
   Target,
   ArrowRight,
-  Sparkles,
   ChevronRight,
-  BarChart,
-  LineChart,
-  Activity,
-  PieChart,
-  Clock,
-  LayoutDashboard,
-  CreditCard,
-  Wallet,
-  Settings,
-  MoreHorizontal,
   Plus,
+  Activity,
+  MoreHorizontal,
 } from "lucide-react";
+import { LandingNavbar } from "@/components/landing/navbar";
+import { LandingFooter } from "@/components/landing/footer";
 
 const features = [
   {
@@ -113,7 +105,7 @@ const DashboardPreview = () => (
               <div className="flex items-center justify-between mb-8">
                 <div className="space-y-1">
                   <span className="text-sm font-bold text-gray-900">Activity</span>
-                  <p className="text-[10px] text-gray-400 font-medium">You logged <span className="text-gray-900">32.2 hours</span> this<br/>week — up <span className="text-gray-900">4.3 hours</span> from<br/>last month.</p>
+                  <p className="text-[10px] text-gray-400 font-medium">You logged <span className="text-gray-900">32.2 hours</span> this<br />week — up <span className="text-gray-900">4.3 hours</span> from<br />last month.</p>
                 </div>
                 <div className="flex gap-1.5 bg-gray-50 p-1 rounded-xl border border-gray-100">
                   {['Week', 'Month', 'Year'].map((t, i) => (
@@ -123,7 +115,7 @@ const DashboardPreview = () => (
                   ))}
                 </div>
               </div>
-              
+
               <div className="flex items-start gap-8">
                 <div className="pt-4">
                   <div className="text-4xl font-bold tracking-tight text-gray-900">32.2h</div>
@@ -147,21 +139,20 @@ const DashboardPreview = () => (
                             <div className="w-1.5 h-1.5 rounded-full border-2 border-blue-500 bg-white" />
                           </div>
                         )}
-                        
+
                         {/* Phantom Bar with Stripes */}
-                        <div 
+                        <div
                           className="absolute inset-x-0 top-0 bottom-0 rounded-full opacity-40 transition-opacity group-hover:opacity-60"
                           style={{
                             background: `repeating-linear-gradient(135deg, transparent, transparent 4px, #3b82f6 4px, #3b82f6 5px)`,
                             opacity: 0.1
                           }}
                         />
-                        
+
                         {/* Blue Candle */}
-                        <div 
-                          className={`w-full rounded-full transition-all duration-700 relative z-0 bg-gradient-to-t from-blue-600 to-blue-400 shadow-[0_4px_12px_rgba(37,99,235,0.2)] ${
-                            i === 2 ? 'ring-4 ring-blue-500/10' : ''
-                          }`}
+                        <div
+                          className={`w-full rounded-full transition-all duration-700 relative z-0 bg-gradient-to-t from-blue-600 to-blue-400 shadow-[0_4px_12px_rgba(37,99,235,0.2)] ${i === 2 ? 'ring-4 ring-blue-500/10' : ''
+                            }`}
                           style={{ height: `${h}%` }}
                         >
                           {/* Inner Shine */}
@@ -274,7 +265,7 @@ export default function HomePage() {
       <div className="absolute inset-0 z-0">
         {/* Grid Pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
-        
+
         {/* Concentric Arcs */}
         <div className="absolute top-[15%] left-1/2 -translate-x-1/2 w-[1200px] h-[1200px] pointer-events-none opacity-50">
           <div className="absolute inset-0 rounded-full border border-violet-500/[0.03] scale-[0.4]" />
@@ -288,48 +279,11 @@ export default function HomePage() {
         <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[120px] -z-10" />
       </div>
 
-      <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-600 to-purple-600 flex items-center justify-center">
-              <Sparkles className="w-4 h-4 text-white" />
-            </div>
-            <span className="font-display text-xl font-bold tracking-tight">Stackly</span>
-          </div>
-
-          <nav className="hidden md:flex items-center gap-1 bg-secondary/60 rounded-full px-1 py-1">
-            <Link href="#features" className="px-4 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-full hover:bg-background">
-              Features
-            </Link>
-            <Link href="/pricing" className="px-4 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-full hover:bg-background">
-              Pricing
-            </Link>
-            <Link href="/about" className="px-4 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-full hover:bg-background">
-              About
-            </Link>
-            <Link href="/contact" className="px-4 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-full hover:bg-background">
-              Contact
-            </Link>
-          </nav>
-
-          <div className="flex items-center gap-3">
-            <Link href="/login">
-              <Button variant="ghost" size="sm" className="font-medium">
-                Log In
-              </Button>
-            </Link>
-            <Link href="/dashboard">
-              <Button size="sm" className="font-medium rounded-full px-5 bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white border-0">
-                Start Free Trial
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </header>
+      <LandingNavbar />
 
       <main>
         <section className="pt-32 pb-20 px-6 relative overflow-visible">
-            <div className="max-w-6xl mx-auto relative">
+          <div className="max-w-6xl mx-auto relative">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -351,16 +305,16 @@ export default function HomePage() {
               </h1>
 
               <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12">
-                The CRM that turns your Substack subscribers into lasting relationships. 
+                The CRM that turns your Substack subscribers into lasting relationships.
                 Segment audiences, track engagement, and boost conversions—all in one place.
               </p>
 
               <div className="relative max-w-md mx-auto mb-16">
                 <div className="flex items-center p-1.5 bg-white rounded-full border border-gray-200 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] focus-within:border-violet-400 focus-within:ring-4 focus-within:ring-violet-500/5 transition-all">
-                  <input 
-                    type="email" 
-                    placeholder="Email" 
-                    className="flex-1 bg-transparent border-0 focus:ring-0 px-6 text-sm outline-none text-gray-900 placeholder:text-gray-400" 
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    className="flex-1 bg-transparent border-0 focus:ring-0 px-6 text-sm outline-none text-gray-900 placeholder:text-gray-400"
                   />
                   <Button className="rounded-full bg-black hover:bg-black/90 text-white px-8 h-12 text-sm font-bold">
                     Start free trial
@@ -368,9 +322,9 @@ export default function HomePage() {
                 </div>
               </div>
 
-              </motion.div>
+            </motion.div>
 
-              <DashboardPreview />
+            <DashboardPreview />
           </div>
         </section>
 
@@ -423,12 +377,12 @@ export default function HomePage() {
             >
               {/* Inner Shadows */}
               <div className="absolute inset-0 shadow-[inset_0_2px_40px_rgba(0,0,0,0.1),inset_0_0_100px_rgba(0,0,0,0.1)] pointer-events-none" />
-              
+
               <div className="relative z-10 max-w-2xl mx-auto text-white">
                 <h2 className="font-display text-4xl md:text-6xl font-bold mb-6 tracking-tight leading-[1.1]">
                   Ready to understand your readers?
                 </h2>
-                
+
                 <p className="text-white/80 text-lg md:text-xl mb-12 font-medium">
                   Stop guessing and start growing. Get the deep insights you need to turn your newsletter into a business.
                 </p>
@@ -443,13 +397,15 @@ export default function HomePage() {
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
                   </Link>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="h-14 rounded-full px-10 border-white/20 text-white hover:bg-white/10 font-bold bg-transparent"
-                  >
-                    View Case Studies
-                  </Button>
+                  <Link href="/how-it-works">
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className="h-14 rounded-full px-10 border-white/20 text-white hover:bg-white/10 font-bold bg-transparent"
+                    >
+                      How It Works
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </motion.div>
@@ -457,27 +413,7 @@ export default function HomePage() {
         </section>
       </main>
 
-      <footer className="border-t border-border py-12 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-600 to-purple-600 flex items-center justify-center">
-                <Sparkles className="w-4 h-4 text-white" />
-              </div>
-              <span className="font-display text-lg font-bold">Stackly</span>
-            </div>
-            <div className="flex items-center gap-6 text-sm text-muted-foreground">
-              <a href="#" className="hover:text-foreground transition-colors">Privacy</a>
-              <a href="#" className="hover:text-foreground transition-colors">Terms</a>
-              <a href="#" className="hover:text-foreground transition-colors">Support</a>
-              <a href="#" className="hover:text-foreground transition-colors">Twitter</a>
-            </div>
-            <div className="text-sm text-muted-foreground">
-              © 2024 Stackly. All rights reserved.
-            </div>
-          </div>
-        </div>
-      </footer>
+      <LandingFooter />
     </div>
   );
 }
