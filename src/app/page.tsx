@@ -281,9 +281,10 @@ export default function HomePage() {
               transition={{ duration: 0.6 }}
               className="text-center max-w-3xl mx-auto"
             >
-              <div className="inline-flex items-center gap-1.5 bg-violet-600 text-white px-5 py-2 rounded-full text-sm font-bold mb-10 shadow-xl shadow-violet-200/50">
+              <div className="inline-flex items-center gap-1.5 bg-secondary text-secondary-foreground px-4 py-1.5 rounded-full text-xs font-semibold mb-10 border border-border/50 shadow-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-violet-500" />
                 <span>No credit card required</span>
-                <ChevronRight className="w-4 h-4" />
+                <ChevronRight className="w-3.5 h-3.5 opacity-50" />
               </div>
 
               <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-8">
