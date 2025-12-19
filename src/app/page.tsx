@@ -275,18 +275,18 @@ export default function HomePage() {
       <main>
         <section className="pt-32 pb-20 px-6 relative overflow-visible">
             <div className="max-w-6xl mx-auto relative">
-              <motion.div
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               className="text-center max-w-3xl mx-auto"
             >
-              <div className="inline-flex items-center gap-2 bg-violet-100 text-violet-700 px-4 py-1.5 rounded-full text-sm font-medium mb-8">
-                <Sparkles className="w-4 h-4" />
-                <span>Built exclusively for Substack creators</span>
+              <div className="inline-flex items-center gap-1.5 bg-violet-600 text-white px-5 py-2 rounded-full text-sm font-bold mb-10 shadow-xl shadow-violet-200/50">
+                <span>No credit card required</span>
+                <ChevronRight className="w-4 h-4" />
               </div>
 
-              <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-6">
+              <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-8">
                 Know Your Readers.
                 <br />
                 <span className="bg-gradient-to-r from-violet-600 via-purple-600 to-violet-600 bg-clip-text text-transparent">
@@ -294,10 +294,23 @@ export default function HomePage() {
                 </span>
               </h1>
 
-              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
+              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12">
                 The CRM that turns your Substack subscribers into lasting relationships. 
                 Segment audiences, track engagement, and boost conversions—all in one place.
               </p>
+
+              <div className="relative max-w-md mx-auto mb-16">
+                <div className="flex items-center p-1.5 bg-white rounded-full border border-gray-200 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] focus-within:border-violet-400 focus-within:ring-4 focus-within:ring-violet-500/5 transition-all">
+                  <input 
+                    type="email" 
+                    placeholder="Email" 
+                    className="flex-1 bg-transparent border-0 focus:ring-0 px-6 text-sm outline-none text-gray-900 placeholder:text-gray-400" 
+                  />
+                  <Button className="rounded-full bg-black hover:bg-black/90 text-white px-8 h-12 text-sm font-bold">
+                    Start free trial
+                  </Button>
+                </div>
+              </div>
 
               </motion.div>
 
