@@ -118,17 +118,6 @@ const DashboardPreview = () => (
                 </div>
               </div>
               <div className="h-48 w-full relative flex items-end gap-2 px-2">
-                <svg className="absolute inset-x-0 bottom-0 w-full h-full overflow-visible pointer-events-none z-10" preserveAspectRatio="none" viewBox="0 0 100 100">
-                  <path
-                    d="M 0 60 L 10 50 L 20 65 L 30 35 L 40 55 L 50 30 L 60 40 L 70 60 L 80 35 L 90 45 L 100 25"
-                    fill="none"
-                    stroke="rgb(139 92 246)"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="opacity-30"
-                  />
-                </svg>
                 {[45, 60, 40, 85, 65, 90, 75, 55, 80, 70, 95, 85].map((h, i) => (
                   <div key={i} className="flex-1 relative group">
                     <div 
@@ -163,28 +152,6 @@ const DashboardPreview = () => (
                       <span className="text-[10px] font-medium text-gray-400">vs last month</span>
                     </div>
                   </div>
-                  <div className="h-10 w-24">
-                    <svg viewBox="0 0 100 40" className="w-full h-full overflow-visible">
-                      <defs>
-                        <linearGradient id="blue-spark-glow" x1="0%" y1="0%" x2="0%" y2="100%">
-                          <stop offset="0%" stopColor="rgb(59 130 246)" stopOpacity="0.2" />
-                          <stop offset="100%" stopColor="rgb(59 130 246)" stopOpacity="0" />
-                        </linearGradient>
-                      </defs>
-                      <path
-                        d="M 0 35 Q 20 32 40 25 T 70 15 T 100 5"
-                        fill="none"
-                        stroke="rgb(59 130 246)"
-                        strokeWidth="2.5"
-                        strokeLinecap="round"
-                        className="drop-shadow-[0_2px_4px_rgba(59,130,246,0.3)]"
-                      />
-                      <path
-                        d="M 0 35 Q 20 32 40 25 T 70 15 T 100 5 V 40 H 0 Z"
-                        fill="url(#blue-spark-glow)"
-                      />
-                    </svg>
-                  </div>
                 </div>
               </div>
               <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-50 group hover:border-violet-100 transition-all">
@@ -201,28 +168,6 @@ const DashboardPreview = () => (
                       <span className="text-xs font-bold text-green-500">+4.2%</span>
                       <span className="text-[10px] font-medium text-gray-400">vs average</span>
                     </div>
-                  </div>
-                  <div className="h-10 w-24">
-                    <svg viewBox="0 0 100 40" className="w-full h-full overflow-visible">
-                      <defs>
-                        <linearGradient id="violet-spark-glow" x1="0%" y1="0%" x2="0%" y2="100%">
-                          <stop offset="0%" stopColor="rgb(139 92 246)" stopOpacity="0.2" />
-                          <stop offset="100%" stopColor="rgb(139 92 246)" stopOpacity="0" />
-                        </linearGradient>
-                      </defs>
-                      <path
-                        d="M 0 32 Q 25 35 50 20 T 75 12 T 100 5"
-                        fill="none"
-                        stroke="rgb(139 92 246)"
-                        strokeWidth="2.5"
-                        strokeLinecap="round"
-                        className="drop-shadow-[0_2px_4px_rgba(139,92,246,0.3)]"
-                      />
-                      <path
-                        d="M 0 32 Q 25 35 50 20 T 75 12 T 100 5 V 40 H 0 Z"
-                        fill="url(#violet-spark-glow)"
-                      />
-                    </svg>
                   </div>
                 </div>
               </div>
