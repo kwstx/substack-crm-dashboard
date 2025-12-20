@@ -1,10 +1,9 @@
 "use client";
 
 import { LandingNavbar } from "@/components/landing/navbar";
-import { LandingFooter } from "@/components/landing/footer";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { Github, MessagesSquare, Code2, Users2, ArrowRight } from "lucide-react";
+import { Github, Twitter, Code2, Users2, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 const resources = [
@@ -13,16 +12,16 @@ const resources = [
         title: "Open Source",
         description: "Explore the code, report issues, and contribute to the future of the project on GitHub.",
         action: "Star on GitHub",
-        href: "https://github.com/lume-project",
+        href: "https://github.com/kwstx/substack-crm-dashboard",
         color: "bg-gray-900 text-white",
     },
     {
-        icon: MessagesSquare,
-        title: "Join the Discord",
-        description: "Connect with other newsletter creators, share feedback, and get help in real-time.",
-        action: "Join Server",
-        href: "https://discord.gg/lume",
-        color: "bg-indigo-500 text-white",
+        icon: Twitter,
+        title: "Follow on X",
+        description: "Stay updated with the latest features, tips, and behind-the-scenes development.",
+        action: "Follow @lume",
+        href: "https://x.com/lume_app",
+        color: "bg-black text-white",
     },
     {
         icon: Code2,
@@ -109,7 +108,7 @@ export default function CommunityPage() {
                                 We're open source for a reason. Check our roadmap, vote on features, or submit a PR. This project belongs to you.
                             </p>
                             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                                <Link href="https://github.com/lume-project/roadmap">
+                                <Link href="https://github.com/kwstx/substack-crm-dashboard/blob/main/ROADMAP.md">
                                     <Button size="lg" className="rounded-full bg-white text-black hover:bg-gray-100 font-bold px-8 h-12">
                                         View Roadmap
                                     </Button>
@@ -120,7 +119,7 @@ export default function CommunityPage() {
                 </div>
             </main>
 
-            <LandingFooter />
+
         </div>
     );
 }

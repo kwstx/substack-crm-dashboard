@@ -1,7 +1,6 @@
 "use client";
 
 import { LandingNavbar } from "@/components/landing/navbar";
-import { LandingFooter } from "@/components/landing/footer";
 import { motion } from "framer-motion";
 import { Check, Zap, Heart, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -109,7 +108,7 @@ export default function PricingPage() {
         </div>
       </main>
 
-      <LandingFooter />
+
     </div>
   );
 }

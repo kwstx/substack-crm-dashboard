@@ -23,6 +23,8 @@ export const users = pgTable("user", {
     password: text("password"),
     substackUrl: text("substack_url"),
     stripeCustomerId: text("stripe_customer_id"),
+    newsletterName: text("newsletter_name"),
+    timezone: text("timezone").default("UTC"),
     createdAt: timestamp("created_at").defaultNow(),
 });
 

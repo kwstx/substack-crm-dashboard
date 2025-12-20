@@ -132,7 +132,7 @@ export default function AnalyticsContent({ metrics, growthData, engagementTrend,
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                 {kpiCards?.map((kpi) => (
                     <Card key={kpi.title} className={`border-none shadow-[0_8px_30px_rgb(0,0,0,0.04)] bg-white rounded-3xl p-6 group cursor-default border border-gray-50 transition-all ${kpi.hoverBorder}`}>
                         <div className="flex items-center justify-between mb-4">

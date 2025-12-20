@@ -19,7 +19,7 @@ export function LandingFooter() {
                         <Link href="/pricing" className="hover:text-foreground transition-colors">Pricing</Link>
                     </div>
                     <div className="text-sm text-muted-foreground">
-                        © {new Date().getFullYear()} Lume. All rights reserved.
+                        © {new Date().getFullYear()} Lume. Open source project.
                     </div>
                 </div>
             </div>

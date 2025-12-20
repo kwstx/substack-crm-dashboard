@@ -8,6 +8,7 @@ import {
   Bell,
   Sparkles,
   ChevronDown,
+  Menu,
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -25,6 +26,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
 
@@ -69,6 +71,44 @@ export function DashboardTopNav() {
               );
             })}
           </nav>
+
+          {/* Mobile Menu */}
+          <div className="lg:hidden">
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="text-gray-600">
+                  <Menu className="w-6 h-6" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left" className="w-[300px] sm:w-[400px]">
+                <div className="flex flex-col gap-6 mt-8">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Logo className="w-8 h-8 text-black" />
+                    <span className="font-display text-2xl font-bold tracking-tight text-black">Lume</span>
+                  </div>
+                  <nav className="flex flex-col gap-2">
+                    {navigation.map((item) => {
+                      const isActive = pathname === item.href;
+                      return (
+                        <Link
+                          key={item.name}
+                          href={item.href}
+                          className={cn(
+                            "px-4 py-3 text-lg font-medium transition-all rounded-xl",
+                            isActive
+                              ? "bg-black text-white shadow-sm"
+                              : "text-gray-500 hover:text-gray-900 hover:bg-gray-100"
+                          )}
+                        >
+                          {item.name}
+                        </Link>
+                      );
+                    })}
+                  </nav>
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
 
         <div className="flex items-center gap-3">

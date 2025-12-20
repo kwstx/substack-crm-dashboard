@@ -27,6 +27,8 @@ interface User {
     email?: string | null;
     image?: string | null;
     substackUrl?: string | null;
+    newsletterName?: string | null;
+    timezone?: string | null;
 }
 
 interface SettingsContentProps {
@@ -43,8 +45,8 @@ interface Integration {
 
 export default function SettingsContent({ user }: SettingsContentProps) {
     const [name, setName] = useState(user?.name || "");
-    const [newsletterName, setNewsletterName] = useState(""); // TODO: Add to DB schema
-    const [timezone, setTimezone] = useState("UTC"); // TODO: Add to DB schema
+    const [newsletterName, setNewsletterName] = useState(user?.newsletterName || "");
+    const [timezone, setTimezone] = useState(user?.timezone || "UTC");
     const [isLoading, setIsLoading] = useState(false);
 
     const handleSave = async () => {
@@ -95,7 +97,7 @@ export default function SettingsContent({ user }: SettingsContentProps) {
                 </div>
             </div>
 
-            <div className="grid grid-cols-12 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 <div className="col-span-12 lg:col-span-8 space-y-6">
                     <Card className="border-none shadow-[0_8px_30px_rgb(0,0,0,0.04)] bg-white rounded-[2.5rem] p-8 border border-gray-100/50">
                         <div className="flex items-center justify-between mb-8">

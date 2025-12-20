@@ -115,10 +115,10 @@ export default function OutreachContent({ segments, history, templates }: Outrea
             </div>
 
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-                <TabsList className="w-full max-w-md bg-white border border-gray-100 p-1 rounded-full mb-8 shadow-sm">
-                    <TabsTrigger value="compose" className="rounded-full font-bold data-[state=active]:bg-black data-[state=active]:text-white px-6">Compose</TabsTrigger>
-                    <TabsTrigger value="history" className="rounded-full font-bold data-[state=active]:bg-black data-[state=active]:text-white px-6">History</TabsTrigger>
-                    <TabsTrigger value="templates" className="rounded-full font-bold data-[state=active]:bg-black data-[state=active]:text-white px-6">Templates</TabsTrigger>
+                <TabsList className="w-full max-w-md bg-white border border-gray-100 p-1 rounded-full mb-8 shadow-sm flex-wrap h-auto">
+                    <TabsTrigger value="compose" className="flex-1 rounded-full font-bold data-[state=active]:bg-black data-[state=active]:text-white px-4 py-2">Compose</TabsTrigger>
+                    <TabsTrigger value="history" className="flex-1 rounded-full font-bold data-[state=active]:bg-black data-[state=active]:text-white px-4 py-2">History</TabsTrigger>
+                    <TabsTrigger value="templates" className="flex-1 rounded-full font-bold data-[state=active]:bg-black data-[state=active]:text-white px-4 py-2">Templates</TabsTrigger>
                 </TabsList>
 
                 <TabsContent value="compose" className="space-y-6">

@@ -14,7 +14,7 @@ const releases = [
             "Dashboard: Real-time overview of revenue and engagement",
             "Subscribers: Detailed lists with filtering and search",
             "Analytics: Growth charts and conversion tracking",
-            "Payments: Transaction history and LTV calculation"
+            "Payments: Transaction history"
         ]
     }
 ];

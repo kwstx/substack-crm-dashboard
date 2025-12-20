@@ -20,7 +20,9 @@ export default async function SettingsPage() {
     name: dbUser.name,
     email: dbUser.email,
     image: dbUser.image,
-    substackUrl: dbUser.substackUrl, // Fetch connect status
+    substackUrl: dbUser.substackUrl,
+    newsletterName: dbUser.newsletterName,
+    timezone: dbUser.timezone,
   } : (session?.user || { name: 'Guest', email: 'guest@example.com', image: null });
 
   return <SettingsContent user={user as any} />;

@@ -3,6 +3,8 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import {
   Users,
   BarChart3,
@@ -36,8 +38,8 @@ const features = [
     icon: MessageSquare,
   },
   {
-    title: "Integrations",
-    description: "Connect with your favorite tools via Zapier and custom webhooks.",
+    title: "Platform Integrations",
+    description: "Seamlessly connect and sync directly with your Substack newsletter data.",
     icon: Zap,
   },
   {
@@ -74,7 +76,7 @@ const DashboardPreview = () => (
             <div className="w-2 h-2 rounded-full bg-violet-500 animate-pulse" />
             <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Live: Jan 01 - Jul 31</span>
           </div>
-          <div className="flex gap-4">
+          <div className="hidden md:flex gap-4">
             {['Home', 'Subscribers', 'Analytics', 'Personas'].map((item) => (
               <span key={item} className="text-xs font-medium text-gray-400 cursor-default">{item}</span>
             ))}
@@ -89,7 +91,7 @@ const DashboardPreview = () => (
       <div className="p-8 bg-[#FAFAFB]">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h3 className="text-2xl font-bold tracking-tight text-gray-900">Good morning, Creator</h3>
+            <h3 className="text-xl md:text-2xl font-bold tracking-tight text-gray-900">Good morning, Creator</h3>
             <p className="text-sm text-gray-400 font-medium">Here's what's happening with your newsletter today.</p>
           </div>
           <Button size="sm" className="rounded-full bg-black hover:bg-black/90 text-white px-5">
@@ -98,9 +100,9 @@ const DashboardPreview = () => (
           </Button>
         </div>
 
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Main Chart Card */}
-          <div className="col-span-2 space-y-6">
+          <div className="col-span-1 md:col-span-2 space-y-6">
             <div className="bg-white rounded-[2.5rem] p-8 shadow-sm border border-gray-100/50">
               <div className="flex items-center justify-between mb-8">
                 <div className="space-y-1">
@@ -259,6 +261,8 @@ const DashboardPreview = () => (
 );
 
 export default function HomePage() {
+  const [email, setEmail] = useState("");
+  const router = useRouter();
   return (
     <div className="min-h-screen bg-background relative overflow-hidden">
       {/* Background Designs */}
@@ -314,9 +318,19 @@ export default function HomePage() {
                   <input
                     type="email"
                     placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        router.push(`/login?email=${encodeURIComponent(email)}`);
+                      }
+                    }}
                     className="flex-1 bg-transparent border-0 focus:ring-0 px-6 text-sm outline-none text-gray-900 placeholder:text-gray-400"
                   />
-                  <Button className="rounded-full bg-black hover:bg-black/90 text-white px-8 h-12 text-sm font-bold">
+                  <Button
+                    className="rounded-full bg-black hover:bg-black/90 text-white px-8 h-12 text-sm font-bold"
+                    onClick={() => router.push(`/login?email=${encodeURIComponent(email)}`)}
+                  >
                     Get Started
                   </Button>
                 </div>

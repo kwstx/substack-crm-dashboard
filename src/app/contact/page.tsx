@@ -1,7 +1,6 @@
 "use client";
 
 import { LandingNavbar } from "@/components/landing/navbar";
-import { LandingFooter } from "@/components/landing/footer";
 import { Button } from "@/components/ui/button";
 import { Mail, Twitter, MapPin, MessageSquare } from "lucide-react";
 import { motion } from "framer-motion";
@@ -110,7 +109,7 @@ export default function ContactPage() {
         </div>
       </main>
 
-      <LandingFooter />
+
     </div>
   );
 }

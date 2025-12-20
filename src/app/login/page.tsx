@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Mail, Lock, Eye, EyeOff, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { register, authenticate, signInWithGoogle } from "@/actions/auth";
+import { register, authenticate } from "@/actions/auth";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { LandingNavbar } from "@/components/landing/navbar";
@@ -54,7 +54,7 @@ export default function LoginPage() {
 
       <LandingNavbar />
 
-      <main className="pt-32 pb-20 px-6 relative min-h-[calc(100vh-80px)] flex items-center justify-center">
+      <main className="pt-24 md:pt-32 pb-20 px-6 relative min-h-[calc(100vh-80px)] flex items-center justify-center">
         <div className="w-full max-w-md relative z-10">
           <div className="text-center mb-8">
             <h1 className="font-display text-3xl md:text-4xl font-bold tracking-tight mb-3">

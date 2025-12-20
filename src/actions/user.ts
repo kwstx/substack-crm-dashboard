@@ -39,6 +39,8 @@ export async function updateProfile(data: { name?: string; newsletterName?: stri
         const updateData: any = {};
         if (data.name !== undefined) updateData.name = data.name;
         if (data.substackUrl !== undefined) updateData.substackUrl = data.substackUrl;
+        if (data.newsletterName !== undefined) updateData.newsletterName = data.newsletterName;
+        if (data.timezone !== undefined) updateData.timezone = data.timezone;
 
         if (Object.keys(updateData).length === 0) return { success: true };
 

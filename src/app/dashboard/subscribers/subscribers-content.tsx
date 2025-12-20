@@ -177,7 +177,7 @@ export default function SubscribersContent({ initialSubscribers, initialSegments
             </div>
 
             {/* Stats Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                 {[
                     { label: "Total Audience", value: initialSubscribers.length.toString(), growth: "+0%", icon: Users, color: "text-blue-600", bg: "bg-blue-50" },
                     { label: "Paid Subs", value: initialSubscribers.filter(s => s.status === 'paid').length.toString(), growth: "+0%", icon: Checkbox, color: "text-green-600", bg: "bg-green-50" }, // Using Checkbox as placeholder icon

@@ -5,34 +5,30 @@ import { subscribers, payments, interactions, campaigns, personas, segments, sub
 import { count, eq, sql, desc, gte, and, lt } from "drizzle-orm";
 import { auth } from "@/auth";
 
-export async function getDashboardMetrics(range: string = 'week') {
-    try {
-        const endDate = new Date();
-        let startDate = new Date();
-        let interval = '7 days';
-        let dateFormat = 'Day'; // 'Day' -> Monday, 'Mon' -> Jan
-        let groupBy = 'date'; // Group by full date or month
+// Overload to support existing string-based calls if any, though we only see Date usage now.
+// For simplicity, let's allow optional dates, and if not provided, default to 'week'.
+// Actually, let's change signature to strictly accept from/to dates, 
+// but handle cases where they might be undefined by falling back to defaults.
 
-        switch (range) {
-            case 'week':
-                startDate.setDate(endDate.getDate() - 7);
-                interval = '7 days';
-                dateFormat = 'Day'; // Monday
-                break;
-            case 'month':
-                startDate.setDate(endDate.getDate() - 30);
-                interval = '30 days';
-                dateFormat = 'DD'; // 01, 02...
-                break;
-            case 'year':
-                startDate.setFullYear(endDate.getFullYear() - 1);
-                interval = '1 year';
-                dateFormat = 'Mon'; // Jan, Feb
-                groupBy = "TO_CHAR(date, 'YYYY-MM')"; // Group by month
-                break;
-            default: // week
-                startDate.setDate(endDate.getDate() - 7);
+export async function getDashboardMetrics(from?: Date, to?: Date) {
+    try {
+        const endDate = to || new Date();
+        let startDate = from;
+        const interval = '7 days'; // Simplified
+        const dateFormat = 'Day';
+        let groupBy = 'date';
+
+        // If no start date provided, default to 7 days ago
+        if (!startDate) {
+            startDate = new Date(endDate);
+            startDate.setDate(endDate.getDate() - 7);
         }
+
+        // Determine range roughly for formatting logic (week/year fallback)
+        // This is a simplification to keep existing SQL logic working without full rewrite
+        const diffDays = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+        const range = diffDays > 300 ? 'year' : diffDays > 30 ? 'month' : 'week';
+
 
         // Calculate previous period for trends
         const duration = endDate.getTime() - startDate.getTime();
