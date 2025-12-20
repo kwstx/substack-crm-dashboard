@@ -18,7 +18,7 @@ const steps = [
     },
     {
         title: "Uncover Hidden Insights",
-        description: "Our AI analyzes reading patterns to identify your most valuable subscribers (Whales) and those at risk of churning. See exactly what content drives paid conversions.",
+        description: "Connect your data source to analyze reading patterns and identify your most valuable subscribers (Whales). Keep your data private while getting big insights.",
         icon: LineChart,
         color: "blue",
         gradient: "from-blue-500 to-cyan-500"
@@ -65,7 +65,7 @@ export default function HowItWorksPage() {
                             transition={{ delay: 0.1 }}
                             className="text-lg text-muted-foreground"
                         >
-                            Stackly isn't just another dashboard. It's an intelligent CRM built specifically for the unique needs of newsletter businesses.
+                            Lume isn't just another dashboard. It's an intelligent CRM built specifically for the unique needs of newsletters.
                         </motion.p>
                     </div>
 
@@ -158,7 +158,7 @@ export default function HowItWorksPage() {
                             </Button>
                         </Link>
                         <p className="mt-4 text-xs text-muted-foreground font-medium uppercase tracking-wider">
-                            Free 14-day trial • No credit card required
+                            Completely Free • Open Source • No credit card required
                         </p>
                     </div>
                 </div>

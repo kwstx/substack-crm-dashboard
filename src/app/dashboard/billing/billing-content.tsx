@@ -9,6 +9,7 @@ import {
     Download,
     Check,
 } from "lucide-react";
+import { toast } from "sonner";
 
 interface Invoice {
     id: string;
@@ -35,7 +36,7 @@ export default function BillingContent({ plan, invoices }: BillingContentProps) 
                     <h1 className="font-display text-3xl font-bold tracking-tight">Billing</h1>
                     <p className="text-muted-foreground mt-1">Manage your plan, payment methods, and invoices</p>
                 </div>
-                <Button className="rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white">
+                <Button className="rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white" onClick={() => toast.info("Upgrading plan is coming soon!")}>
                     Upgrade Plan
                 </Button>
             </div>
@@ -71,8 +72,8 @@ export default function BillingContent({ plan, invoices }: BillingContentProps) 
                         </div>
 
                         <div className="flex items-center gap-3 pt-6 border-t">
-                            <Button className="rounded-xl">Change Plan</Button>
-                            <Button variant="outline" className="rounded-xl text-rose-600 hover:text-rose-700 hover:bg-rose-50 border-rose-100">Cancel Subscription</Button>
+                            <Button className="rounded-xl" onClick={() => toast.info("Change Plan is coming soon!")}>Change Plan</Button>
+                            <Button variant="outline" className="rounded-xl text-rose-600 hover:text-rose-700 hover:bg-rose-50 border-rose-100" onClick={() => toast.info("Cancellation is coming soon!")}>Cancel Subscription</Button>
                         </div>
                     </CardContent>
                 </Card>
@@ -99,7 +100,7 @@ export default function BillingContent({ plan, invoices }: BillingContentProps) 
                                 </Button>
                             </div>
                         </div>
-                        <Button variant="outline" className="w-full mt-4 rounded-xl">Update Method</Button>
+                        <Button variant="outline" className="w-full mt-4 rounded-xl" onClick={() => toast.info("Update Payment Method is coming soon!")}>Update Method</Button>
                     </CardContent>
                 </Card>
             </div>

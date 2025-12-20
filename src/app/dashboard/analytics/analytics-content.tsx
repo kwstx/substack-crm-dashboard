@@ -35,9 +35,10 @@ interface AnalyticsContentProps {
     growthData: any[];
     engagementTrend: any[];
     contentPerformance: any[];
+    engagementData: any[];
 }
 
-export default function AnalyticsContent({ metrics, growthData, engagementTrend, contentPerformance }: AnalyticsContentProps) {
+export default function AnalyticsContent({ metrics, growthData, engagementTrend, contentPerformance, engagementData }: AnalyticsContentProps) {
 
     const kpiCards = [
         {
@@ -151,16 +152,36 @@ export default function AnalyticsContent({ metrics, growthData, engagementTrend,
                     </div>
                 </Card>
 
-                {/* Keeping Quick Insights Static for now as it needs advanced analytics logic not in scope */}
+                {/* Side Stats */}
                 <div className="col-span-12 lg:col-span-4 space-y-6">
                     <Card className="border-none shadow-[0_8px_30px_rgb(0,0,0,0.04)] bg-white rounded-3xl p-6">
-                        <div className="flex items-center justify-between mb-6">
-                            <CardTitle className="text-lg font-bold">Quick Insights</CardTitle>
-                            <Lightbulb className="w-5 h-5 text-orange-400" />
+                        <div className="flex items-center gap-4 mb-4">
+                            <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center">
+                                <Mail className="w-5 h-5 text-orange-600" />
+                            </div>
+                            <div>
+                                <p className="text-xs font-bold text-gray-400 uppercase">Avg Open Rate</p>
+                                <p className="text-xl font-bold text-gray-900">
+                                    {engagementData.length > 0
+                                        ? Math.round(engagementData.reduce((acc, curr) => acc + curr.avgOpenRate, 0) / engagementData.length)
+                                        : 0}%
+                                </p>
+                            </div>
                         </div>
-                        <div className="space-y-4">
-                            <div className="text-sm text-gray-500">Insights will appear here once you have more interaction data.</div>
+                        {/* <p className="text-xs text-green-600 font-bold bg-green-50 px-2 py-1 rounded inline-block">Top 10% of industry</p> */}
+                    </Card>
+
+                    <Card className="border-none shadow-[0_8px_30px_rgb(0,0,0,0.04)] bg-white rounded-3xl p-6">
+                        <div className="flex items-center gap-4 mb-4">
+                            <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                                <Users className="w-5 h-5 text-blue-600" />
+                            </div>
+                            <div>
+                                <p className="text-xs font-bold text-gray-400 uppercase">Churn Rate</p>
+                                <p className="text-xl font-bold text-gray-900">0.0%</p>
+                            </div>
                         </div>
+                        <p className="text-xs text-gray-500 font-medium">Monthly average</p>
                     </Card>
                 </div>
             </div>

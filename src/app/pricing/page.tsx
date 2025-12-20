@@ -1,140 +1,115 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Check, Sparkles } from "lucide-react";
-import Link from "next/link";
+import { LandingNavbar } from "@/components/landing/navbar";
+import { LandingFooter } from "@/components/landing/footer";
 import { motion } from "framer-motion";
-
-const plans = [
-  {
-    name: "Starter",
-    price: "$0",
-    description: "Perfect for growing newsletters",
-    features: ["Up to 1,000 subscribers", "Basic analytics", "Standard templates", "Community support"],
-    buttonText: "Start for Free",
-    highlight: false,
-  },
-  {
-    name: "Pro",
-    price: "$29",
-    description: "For serious creators building a business",
-    features: ["Unlimited subscribers", "Advanced analytics", "Custom personas", "Priority support", "Smart segmentation"],
-    buttonText: "Get Pro",
-    highlight: true,
-  },
-  {
-    name: "Enterprise",
-    price: "$99",
-    description: "Scale your media empire with confidence",
-    features: ["Multiple stacks", "API access", "White-glove migration", "Dedicated manager", "Custom contracts"],
-    buttonText: "Contact Sales",
-    highlight: false,
-  },
-];
+import { Check, Zap, Heart, Gift } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function PricingPage() {
   return (
-    <div className="min-h-screen bg-background">
-      <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-600 to-purple-600 flex items-center justify-center">
-              <Sparkles className="w-4 h-4 text-white" />
-            </div>
-            <span className="font-display text-xl font-bold tracking-tight">Stackly</span>
-          </Link>
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
 
-          <nav className="hidden md:flex items-center gap-1 bg-secondary/60 rounded-full px-1 py-1">
-            <Link href="/#features" className="px-4 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-full hover:bg-background">
-              Features
-            </Link>
-            <Link href="/pricing" className="px-4 py-1.5 text-sm font-medium text-foreground bg-background transition-colors rounded-full">
-              Pricing
-            </Link>
-            <Link href="/about" className="px-4 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-full hover:bg-background">
-              About
-            </Link>
-            <Link href="/contact" className="px-4 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-full hover:bg-background">
-              Contact
-            </Link>
-          </nav>
+      <LandingNavbar />
 
-          <div className="flex items-center gap-3">
-            <Link href="/login">
-              <Button variant="ghost" size="sm" className="font-medium">
-                Log In
-              </Button>
-            </Link>
-            <Link href="/dashboard">
-              <Button size="sm" className="font-medium rounded-full px-5 bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white border-0">
-                Start Free Trial
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </header>
-
-      <main className="pt-32 pb-20 px-6">
-        <div className="max-w-6xl mx-auto text-center">
+      <main className="pt-32 pb-20 px-6 relative">
+        <div className="max-w-4xl mx-auto text-center mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-16"
           >
-            <h1 className="font-display text-4xl md:text-5xl font-bold mb-4">Simple, transparent pricing</h1>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Choose the plan that's right for your newsletter's growth stage.
+            <span className="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-700 text-sm font-bold mb-6">
+              Our Gift to Creators
+            </span>
+            <h1 className="font-display text-5xl md:text-7xl font-bold tracking-tight mb-8">
+              Pricing? <br />
+              <span className="bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">It's completely free.</span>
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              We believe every writer deserves premium tools to grow their audience.
+              No credit cards, no hidden fees, no "Pro" unlockables.
             </p>
           </motion.div>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.2 }}
+          className="max-w-md mx-auto relative"
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-blue-500 to-violet-500 rounded-[2.5rem] blur-2xl opacity-20" />
+
+          <div className="relative bg-white rounded-[2rem] p-8 md:p-12 border border-gray-100 shadow-xl">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold mb-2">The Everything Plan</h3>
+              <div className="flex items-baseline justify-center gap-1">
+                <span className="text-5xl font-bold text-gray-900">$0</span>
+                <span className="text-muted-foreground font-medium">/forever</span>
+              </div>
+            </div>
+
+            <ul className="space-y-4 mb-10">
+              {[
+                "Unlimited Subscribers",
+                "Advanced Segmentation",
+                "Automated Workflows",
+                "Real-time Analytics",
+                "Email Support",
+                "Community Access"
+              ].map((feature) => (
+                <li key={feature} className="flex items-center gap-3 text-gray-700 font-medium">
+                  <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center shrink-0">
+                    <Check className="w-3.5 h-3.5 text-green-600" />
+                  </div>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+
+            <Link href="/dashboard">
+              <Button size="lg" className="w-full h-14 rounded-full bg-gray-900 hover:bg-gray-800 text-white font-bold text-lg shadow-lg shadow-gray-200">
+                Start for Free
+              </Button>
+            </Link>
+            <p className="text-center text-xs text-muted-foreground mt-4 font-medium">
+              Seriously. Just sign in and start growing.
+            </p>
+          </div>
+        </motion.div>
+
+        <div className="max-w-3xl mx-auto mt-24 text-center">
+          <h2 className="text-3xl font-bold mb-12">Why free?</h2>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {plans.map((plan, i) => (
-              <motion.div
-                key={plan.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                className={`p-8 rounded-3xl border ${
-                  plan.highlight
-                    ? "border-violet-500 bg-violet-500/5 shadow-xl shadow-violet-500/10"
-                    : "border-border bg-background"
-                } flex flex-col text-left`}
-              >
-                <div className="mb-6">
-                  <h3 className="text-xl font-bold mb-2">{plan.name}</h3>
-                  <div className="flex items-baseline gap-1">
-                    <span className="text-4xl font-bold">{plan.price}</span>
-                    <span className="text-muted-foreground">/month</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground mt-2">{plan.description}</p>
-                </div>
-
-                <div className="space-y-4 mb-8 flex-1">
-                  {plan.features.map((feature) => (
-                    <div key={feature} className="flex items-center gap-3 text-sm">
-                      <div className="w-5 h-5 rounded-full bg-violet-100 flex items-center justify-center flex-shrink-0">
-                        <Check className="w-3 h-3 text-violet-600" />
-                      </div>
-                      <span>{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <Button
-                  className={`w-full rounded-full ${
-                    plan.highlight
-                      ? "bg-violet-600 hover:bg-violet-700 text-white"
-                      : "variant-outline"
-                  }`}
-                  variant={plan.highlight ? "default" : "outline"}
-                >
-                  {plan.buttonText}
-                </Button>
-              </motion.div>
-            ))}
+            <div className="p-6">
+              <div className="w-12 h-12 mx-auto bg-violet-100 rounded-2xl flex items-center justify-center mb-4">
+                <Heart className="w-6 h-6 text-violet-600" />
+              </div>
+              <h3 className="font-bold mb-2">Community First</h3>
+              <p className="text-sm text-muted-foreground">We come from the Substack community. This is our way of giving back.</p>
+            </div>
+            <div className="p-6">
+              <div className="w-12 h-12 mx-auto bg-blue-100 rounded-2xl flex items-center justify-center mb-4">
+                <Zap className="w-6 h-6 text-blue-600" />
+              </div>
+              <h3 className="font-bold mb-2">Growth Focus</h3>
+              <p className="text-sm text-muted-foreground">We want to help 10,000 writers reach sustainability. Barriers to entry stick.</p>
+            </div>
+            <div className="p-6">
+              <div className="w-12 h-12 mx-auto bg-amber-100 rounded-2xl flex items-center justify-center mb-4">
+                <Gift className="w-6 h-6 text-amber-600" />
+              </div>
+              <h3 className="font-bold mb-2">Open Future</h3>
+              <p className="text-sm text-muted-foreground">We believe the future of creator tools should be accessible to everyone.</p>
+            </div>
           </div>
         </div>
       </main>
+
+      <LandingFooter />
     </div>
   );
 }

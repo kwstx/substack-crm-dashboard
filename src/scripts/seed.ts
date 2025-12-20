@@ -10,14 +10,14 @@ async function main() {
             name: "Alice Johnson",
             status: "paid",
             tier: "annual",
-            joinDate: new Date("2024-01-15"),
+            joinDate: new Date("2025-01-15"),
             totalOpens: 45,
         },
         {
             email: "bob@example.com",
             name: "Bob Smith",
             status: "free",
-            joinDate: new Date("2024-02-20"),
+            joinDate: new Date("2025-02-20"),
             totalOpens: 12,
         },
         {
@@ -25,7 +25,7 @@ async function main() {
             name: "Charlie Brown",
             status: "paid",
             tier: "monthly",
-            joinDate: new Date("2024-03-10"),
+            joinDate: new Date("2025-03-10"),
             totalOpens: 8,
         }
     ]).onConflictDoNothing();

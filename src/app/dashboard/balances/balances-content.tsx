@@ -8,6 +8,7 @@ import {
     Download,
     History,
 } from "lucide-react";
+import { toast } from "sonner";
 
 interface Payout {
     id: string;
@@ -31,11 +32,11 @@ export default function BalancesContent({ balances, payouts }: BalancesContentPr
                     <p className="text-muted-foreground mt-1">Manage your payouts and funds</p>
                 </div>
                 <div className="flex items-center gap-3">
-                    <Button variant="outline" className="rounded-xl">
+                    <Button variant="outline" className="rounded-xl" onClick={() => toast.info("Export is coming soon!")}>
                         <Download className="w-4 h-4 mr-2" />
                         Export
                     </Button>
-                    <Button className="rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white">
+                    <Button className="rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white" onClick={() => toast.info("Withdrawal is coming soon!")}>
                         Withdraw Funds
                     </Button>
                 </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "@/components/ui/sonner";
 
 
 const geistSans = Geist({
@@ -14,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Stackly - CRM for Substack Creators",
+  title: "Lume - CRM for Substack Creators",
   description: "Turn your Substack subscribers into lasting relationships. The CRM built exclusively for newsletter creators.",
 };
 
@@ -29,7 +30,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
-
+        <Toaster />
       </body>
     </html>
   );

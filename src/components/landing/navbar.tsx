@@ -11,30 +11,25 @@ export function LandingNavbar() {
             <nav className="w-full max-w-5xl mx-4 bg-white/80 backdrop-blur-xl border border-gray-200/50 shadow-lg shadow-gray-200/5 rounded-full px-5 h-14 flex items-center justify-between transition-all hover:bg-white/90">
                 <Link href="/" className="flex items-center gap-2">
                     <Logo className="w-6 h-6 text-gray-900" />
-                    <span className="font-display text-lg font-bold tracking-tight text-gray-900">Stackly</span>
+                    <span className="font-display text-lg font-bold tracking-tight text-gray-900">Lume</span>
                 </Link>
 
                 <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
                     <Link href="/#features" className="hover:text-gray-900 transition-colors">Features</Link>
                     <Link href="/pricing" className="hover:text-gray-900 transition-colors">Pricing</Link>
-                    <Link href="/about" className="hover:text-gray-900 transition-colors">About</Link>
+                    <Link href="/community" className="hover:text-gray-900 transition-colors">Community</Link>
                     <Link href="/contact" className="hover:text-gray-900 transition-colors">Contact</Link>
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Button variant="ghost" size="icon" className="w-8 h-8 rounded-full text-gray-500 hover:bg-gray-100 hover:text-gray-900">
-                        <Search className="w-4 h-4" />
-                    </Button>
-                    <Button variant="ghost" size="icon" className="w-8 h-8 rounded-full text-gray-500 hover:bg-gray-100 hover:text-gray-900 mr-1">
-                        <Globe className="w-4 h-4" />
-                    </Button>
+
                     <Link href="/dashboard">
                         <Button size="sm" className="rounded-full bg-black hover:bg-gray-900 text-white px-5 font-medium h-9 shadow-lg shadow-black/5">
-                            Try Stackly
+                            Dashboard
                         </Button>
                     </Link>
                 </div>
-            </nav>
-        </div>
+            </nav >
+        </div >
     );
 }

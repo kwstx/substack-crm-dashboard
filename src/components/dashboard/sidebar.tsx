@@ -24,11 +24,7 @@ import { Logo } from "@/components/ui/logo";
 
 const navigation = [
   { name: "Home", href: "/dashboard", icon: Home },
-  { name: "Payments", href: "/dashboard/payments", icon: CreditCard },
-  { name: "Balances", href: "/dashboard/balances", icon: Wallet },
   { name: "Customers", href: "/dashboard/subscribers", icon: Users },
-  { name: "Products", href: "/dashboard/products", icon: ShoppingBag },
-  { name: "Billing", href: "/dashboard/billing", icon: Receipt },
   { name: "Reports", href: "/dashboard/analytics", icon: BarChart3 },
   { name: "Connect", href: "/dashboard/outreach", icon: MessageSquare },
   { name: "Personas", href: "/dashboard/personas", icon: UserCircle },
@@ -46,7 +42,7 @@ export function DashboardSidebar() {
       <div className="p-6">
         <Link href="/" className="flex items-center gap-2">
           <Logo className="w-8 h-8 text-violet-600" />
-          <span className="font-display text-xl font-bold tracking-tight">Stackly</span>
+          <span className="font-display text-xl font-bold tracking-tight">Lume</span>
         </Link>
       </div>
 

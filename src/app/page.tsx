@@ -22,7 +22,7 @@ import { LandingFooter } from "@/components/landing/footer";
 const features = [
   {
     title: "Advanced Segmentation",
-    description: "Group your readers by behavior, interests, and engagement levels automatically.",
+    description: "Filter and group your readers by behavior, interests, and engagement levels.",
     icon: Users,
   },
   {
@@ -31,13 +31,13 @@ const features = [
     icon: BarChart3,
   },
   {
-    title: "Automated Outreach",
-    description: "Send personalized follow-ups and re-engagement campaigns without lifting a finger.",
+    title: "Campaign Management",
+    description: "Draft and send personalized campaigns directly from your dashboard.",
     icon: MessageSquare,
   },
   {
-    title: "Smart Automations",
-    description: "Connect your Substack with 1000+ tools via our robust API and Zapier integration.",
+    title: "Integrations",
+    description: "Connect with your favorite tools via Zapier and custom webhooks.",
     icon: Zap,
   },
   {
@@ -47,7 +47,7 @@ const features = [
   },
   {
     title: "Custom Personas",
-    description: "AI-powered reader profiles that help you write content that actually resonates.",
+    description: "Generate reader profiles using your own Local AI for maximum privacy.",
     icon: Target,
   },
 ];
@@ -75,7 +75,7 @@ const DashboardPreview = () => (
             <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Live: Jan 01 - Jul 31</span>
           </div>
           <div className="flex gap-4">
-            {['Home', 'Payments', 'Subscribers', 'Analytics'].map((item) => (
+            {['Home', 'Subscribers', 'Analytics', 'Personas'].map((item) => (
               <span key={item} className="text-xs font-medium text-gray-400 cursor-default">{item}</span>
             ))}
           </div>
@@ -292,7 +292,7 @@ export default function HomePage() {
             >
               <div className="inline-flex items-center gap-1.5 bg-secondary text-secondary-foreground px-4 py-1.5 rounded-full text-xs font-semibold mb-10 border border-border/50 shadow-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-violet-500" />
-                <span>No credit card required</span>
+                <span>Built for Substack</span>
                 <ChevronRight className="w-3.5 h-3.5 opacity-50" />
               </div>
 
@@ -306,7 +306,7 @@ export default function HomePage() {
 
               <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12">
                 The CRM that turns your Substack subscribers into lasting relationships.
-                Segment audiences, track engagement, and boost conversions—all in one place.
+                Segment audiences, track engagement, and boost conversions all in one place.
               </p>
 
               <div className="relative max-w-md mx-auto mb-16">
@@ -317,7 +317,7 @@ export default function HomePage() {
                     className="flex-1 bg-transparent border-0 focus:ring-0 px-6 text-sm outline-none text-gray-900 placeholder:text-gray-400"
                   />
                   <Button className="rounded-full bg-black hover:bg-black/90 text-white px-8 h-12 text-sm font-bold">
-                    Start free trial
+                    Get Started
                   </Button>
                 </div>
               </div>
@@ -326,7 +326,7 @@ export default function HomePage() {
 
             <DashboardPreview />
           </div>
-        </section>
+        </section >
 
         <section id="features" className="py-24 px-6 bg-gradient-to-b from-transparent to-secondary/20">
           <div className="max-w-6xl mx-auto">
@@ -384,7 +384,7 @@ export default function HomePage() {
                 </h2>
 
                 <p className="text-white/80 text-lg md:text-xl mb-12 font-medium">
-                  Stop guessing and start growing. Get the deep insights you need to turn your newsletter into a business.
+                  Stop guessing and start growing. Get the deep insights you need to turn your newsletter into a powerful platform.
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -393,7 +393,7 @@ export default function HomePage() {
                       size="lg"
                       className="h-14 rounded-full px-10 bg-white text-violet-600 hover:bg-gray-100 font-bold transition-all"
                     >
-                      Start Free Trial
+                      Get Started
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
                   </Link>
@@ -411,9 +411,9 @@ export default function HomePage() {
             </motion.div>
           </div>
         </section>
-      </main>
+      </main >
 
       <LandingFooter />
-    </div>
+    </div >
   );
 }

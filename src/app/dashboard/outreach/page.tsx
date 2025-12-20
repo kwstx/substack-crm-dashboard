@@ -1,8 +1,20 @@
-import { getCampaigns, getConversations } from "@/actions/outreach";
+
 import OutreachContent from "./outreach-content";
+import { getSegments } from "@/actions/subscribers";
+import { getCampaigns } from "@/actions/outreach";
 
 export default async function OutreachPage() {
-  const { data: campaigns } = await getCampaigns();
+  const [segments, campaigns, templates] = await Promise.all([
+    getSegments(),
+    getCampaigns('one-time'),
+    getCampaigns('template')
+  ]);
 
-  return <OutreachContent campaigns={campaigns} />;
+  return (
+    <OutreachContent
+      segments={segments.data || []}
+      history={campaigns.data || []}
+      templates={templates.data || []}
+    />
+  );
 }

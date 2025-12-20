@@ -57,11 +57,11 @@ export default function PaymentsContent({ initialPayments, stats }: PaymentsCont
                     <p className="text-muted-foreground mt-1">Manage transactions and revenue</p>
                 </div>
                 <div className="flex items-center gap-3">
-                    <Button variant="outline" className="rounded-xl">
+                    <Button variant="outline" className="rounded-xl" onClick={() => toast.info("Export feature is coming soon!")}>
                         <Download className="w-4 h-4 mr-2" />
                         Export
                     </Button>
-                    <Button className="rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white">
+                    <Button className="rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white" onClick={() => toast.info("Payment creation is coming soon!")}>
                         <Plus className="w-4 h-4 mr-2" />
                         Create Payment
                     </Button>
@@ -121,7 +121,7 @@ export default function PaymentsContent({ initialPayments, stats }: PaymentsCont
                     <div className="text-3xl font-bold">$0.00</div>
                     <div className="mt-4 flex items-center justify-between">
                         <span className="text-xs text-white/70">Next payout: Dec 20</span>
-                        <Button size="sm" variant="secondary" className="h-7 text-xs bg-white/20 hover:bg-white/30 text-white border-0">
+                        <Button size="sm" variant="secondary" className="h-7 text-xs bg-white/20 hover:bg-white/30 text-white border-0" onClick={() => toast.info("Payout schedule is coming soon!")}>
                             View Schedule
                         </Button>
                     </div>
@@ -138,6 +138,7 @@ export default function PaymentsContent({ initialPayments, stats }: PaymentsCont
                                     type="text"
                                     placeholder="Search payments..."
                                     className="w-full h-10 pl-9 pr-4 rounded-xl border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500"
+                                    onChange={() => toast.info("Search functionality is coming soon!")}
                                 />
                             </div>
                             <Button variant="outline" size="icon" className="rounded-xl">

@@ -10,6 +10,7 @@ import {
     Users,
     DollarSign,
 } from "lucide-react";
+import { toast } from "sonner";
 
 interface Product {
     id: string;
@@ -34,7 +35,7 @@ export default function ProductsContent({ initialProducts }: ProductsContentProp
                     <h1 className="font-display text-3xl font-bold tracking-tight">Products</h1>
                     <p className="text-muted-foreground mt-1">Manage your subscription tiers and digital products</p>
                 </div>
-                <Button className="rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white">
+                <Button className="rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white" onClick={() => toast.info("Create Product is coming soon!")}>
                     <Plus className="w-4 h-4 mr-2" />
                     Create Product
                 </Button>
@@ -109,7 +110,7 @@ export default function ProductsContent({ initialProducts }: ProductsContentProp
                         <p className="text-sm text-muted-foreground mt-1 max-w-[250px] text-center">
                             Sell e-books, courses, or exclusive downloads to your subscribers.
                         </p>
-                        <Button variant="outline" className="mt-6 rounded-xl">
+                        <Button variant="outline" className="mt-6 rounded-xl" onClick={() => toast.info("Create Product is coming soon!")}>
                             Create First Product
                         </Button>
                     </div>

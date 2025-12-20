@@ -25,31 +25,39 @@ interface SettingsContentProps {
     user: User;
 }
 
-const integrations = [
-    {
-        name: "Substack",
-        description: "Connect your Substack account to sync subscribers",
-        icon: "https://substackcdn.com/image/fetch/w_256,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack.com%2Fimg%2Fsubstack.png",
-        connected: false, // Default to false until we have real integration check
-        lastSync: null,
-    },
-    {
-        name: "Zapier",
-        description: "Automate workflows with 5,000+ apps",
-        icon: "https://cdn.zapier.com/zapier/images/favicon.ico",
-        connected: false,
-        lastSync: null,
-    },
-    {
-        name: "Google Sheets",
-        description: "Export subscriber data to spreadsheets",
-        icon: "https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png",
-        connected: false,
-        lastSync: null,
-    },
-];
+interface Integration {
+    name: string;
+    description: string;
+    icon: string;
+    connected: boolean;
+    key: string;
+}
 
 export default function SettingsContent({ user }: SettingsContentProps) {
+    const integrations: Integration[] = [
+        {
+            name: "Substack",
+            description: "Connect your Substack account to sync subscribers",
+            icon: "https://substackcdn.com/image/fetch/w_256,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack.com%2Fimg%2Fsubstack.png",
+            connected: false,
+            key: 'substack'
+        },
+        {
+            name: "Zapier",
+            description: "Automate workflows with 5,000+ apps",
+            icon: "https://cdn.zapier.com/zapier/images/favicon.ico",
+            connected: false,
+            key: 'zapier'
+        },
+        {
+            name: "Google Sheets",
+            description: "Export subscriber data to spreadsheets",
+            icon: "https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png",
+            connected: false,
+            key: 'sheets'
+        },
+    ];
+
     return (
         <div className="space-y-6 max-w-5xl mx-auto">
             <div className="flex items-center justify-between">
@@ -157,7 +165,7 @@ export default function SettingsContent({ user }: SettingsContentProps) {
                                             <div className="flex items-center gap-2">
                                                 <p className="font-bold text-gray-900">{integration.name}</p>
                                                 {integration.connected && (
-                                                    <div className="w-2 h-2 rounded-full bg-green-500" />
+                                                    <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
                                                 )}
                                             </div>
                                             <p className="text-xs text-gray-400 font-medium">{integration.description}</p>
@@ -167,8 +175,8 @@ export default function SettingsContent({ user }: SettingsContentProps) {
                                         variant={integration.connected ? "outline" : "default"}
                                         size="sm"
                                         className={`rounded-xl px-6 font-bold transition-all ${integration.connected
-                                                ? "border-gray-200 text-gray-600 hover:bg-white"
-                                                : "bg-blue-600 text-white shadow-lg shadow-blue-500/20 hover:bg-blue-700"
+                                            ? "border-gray-200 text-gray-600 hover:bg-white"
+                                            : "bg-blue-600 text-white shadow-lg shadow-blue-500/20 hover:bg-blue-700"
                                             }`}
                                     >
                                         {integration.connected ? "Configure" : "Connect"}

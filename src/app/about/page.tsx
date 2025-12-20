@@ -32,7 +32,7 @@ export default function AboutPage() {
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-600 to-purple-600 flex items-center justify-center">
               <Sparkles className="w-4 h-4 text-white" />
             </div>
-            <span className="font-display text-xl font-bold tracking-tight">Stackly</span>
+            <span className="font-display text-xl font-bold tracking-tight">Lume</span>
           </Link>
 
           <nav className="hidden md:flex items-center gap-1 bg-secondary/60 rounded-full px-1 py-1">
@@ -58,7 +58,7 @@ export default function AboutPage() {
             </Link>
             <Link href="/dashboard">
               <Button size="sm" className="font-medium rounded-full px-5 bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white border-0">
-                Start Free Trial
+                Get Started
               </Button>
             </Link>
           </div>
@@ -74,7 +74,7 @@ export default function AboutPage() {
           >
             <h1 className="font-display text-4xl md:text-5xl font-bold mb-6">Our mission is to help creators thrive</h1>
             <p className="text-muted-foreground text-lg leading-relaxed">
-              Stackly was born out of a simple observation: Substack creators have amazing writing, but limited tools to understand who is actually reading their work. We built the CRM we wanted for ourselves.
+              Lume was born out of a simple observation: Substack creators have amazing writing, but limited tools to understand who is actually reading their work. We built the CRM we wanted for ourselves.
             </p>
           </motion.div>
 

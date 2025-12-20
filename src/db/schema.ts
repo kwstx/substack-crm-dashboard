@@ -107,6 +107,7 @@ export const subscriberSegments = pgTable("subscriber_segments", {
 // Reader Personas (AI Generated or Manual)
 export const personas = pgTable("personas", {
     id: uuid("id").defaultRandom().primaryKey(),
+    userId: text("user_id").references(() => users.id, { onDelete: "cascade" }),
     name: text("name").notNull(), // e.g., "Tech Enthusiast Alex"
     description: text("description"),
     traits: jsonb("traits"), // { "age": "30s", "interests": ["tech", "coding"] }

@@ -14,11 +14,7 @@ import { Button } from "@/components/ui/button";
 
 const navigation = [
   { name: "Home", href: "/dashboard" },
-  { name: "Payments", href: "/dashboard/payments" },
-  { name: "Balances", href: "/dashboard/balances" },
   { name: "Customers", href: "/dashboard/subscribers" },
-  { name: "Products", href: "/dashboard/products" },
-  { name: "Billing", href: "/dashboard/billing" },
   { name: "Reports", href: "/dashboard/analytics" },
   { name: "Connect", href: "/dashboard/outreach" },
   { name: "Personas", href: "/dashboard/personas" },
@@ -36,7 +32,7 @@ export function DashboardTopNav() {
             <div className="w-8 h-8 rounded-lg bg-orange-500 flex items-center justify-center">
               <Sparkles className="w-4 h-4 text-white" />
             </div>
-            <span className="font-display text-xl font-bold tracking-tight">Stackly</span>
+            <span className="font-display text-xl font-bold tracking-tight">Lume</span>
           </Link>
 
           <nav className="hidden lg:flex items-center gap-1 bg-gray-100/80 rounded-full px-1 py-1">

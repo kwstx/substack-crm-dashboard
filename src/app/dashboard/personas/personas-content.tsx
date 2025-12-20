@@ -1,25 +1,22 @@
 "use client";
 
-import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Card } from "@/components/ui/card";
+import { Sparkles, Trash2, Users } from "lucide-react";
+import { generatePersona, deletePersona } from "@/actions/personas";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
-import {
-    Brain,
-    Search,
-    Plus,
-    Zap,
-    ChevronRight,
-    TrendingUp,
-} from "lucide-react";
 
 interface Persona {
     id: string;
     name: string;
     description: string | null;
-    traits: string[] | null;
-    count?: number; // Calculated or manual
-    growth?: string;
+    traits: any;
+    avatarUrl: string | null;
+    createdAt: Date | null;
 }
 
 interface PersonasContentProps {
@@ -27,104 +24,118 @@ interface PersonasContentProps {
 }
 
 export default function PersonasContent({ initialPersonas }: PersonasContentProps) {
+    const [isGenerating, setIsGenerating] = useState(false);
+    const router = useRouter();
+
+    const handleGenerate = async () => {
+        setIsGenerating(true);
+        try {
+            const result = await generatePersona();
+            if (result.success) {
+                toast.success("New persona generated from your audience data!");
+                router.refresh();
+            } else {
+                toast.error(result.error || "Failed to generate persona");
+            }
+        } catch (error) {
+            toast.error("Something went wrong");
+        } finally {
+            setIsGenerating(false);
+        }
+    };
+
+    const handleDelete = async (id: string) => {
+        // Optimistic update could represent here, but for now simple standard pattern
+        const result = await deletePersona(id);
+        if (result.success) {
+            toast.success("Persona deleted");
+            // router.refresh() handles the UI update via server re-render
+            router.refresh();
+        } else {
+            toast.error("Failed to delete");
+        }
+    };
+
     return (
         <div className="space-y-6">
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                    <h1 className="text-4xl font-bold tracking-tight text-gray-900">Personas</h1>
-                    <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center border border-gray-200 cursor-pointer hover:bg-gray-200 transition-colors">
-                        <Brain className="w-4 h-4 text-gray-500" />
+                    <h1 className="text-4xl font-bold tracking-tight text-gray-900">Audience Personas</h1>
+                    <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center border border-purple-200">
+                        <Users className="w-4 h-4 text-purple-600" />
                     </div>
                 </div>
-                <Button className="rounded-xl bg-black text-white px-6 shadow-lg shadow-black/10">
-                    <Plus className="w-4 h-4 mr-2" />
-                    Create Persona
+                <Button
+                    onClick={handleGenerate}
+                    disabled={isGenerating}
+                    className="rounded-xl bg-black text-white px-6 shadow-lg shadow-black/10 font-bold gap-2"
+                >
+                    <Sparkles className="w-4 h-4" />
+                    {isGenerating ? "Analyzing..." : "Generate New Persona"}
                 </Button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {initialPersonas?.map((persona) => (
-                    <Card key={persona.id} className="border-none shadow-[0_8px_30px_rgb(0,0,0,0.04)] bg-white rounded-3xl overflow-hidden group hover:shadow-[0_8px_35px_rgb(0,0,0,0.08)] transition-all">
-                        <div className={`h-2 w-full bg-gradient-to-r from-blue-600 to-blue-400`} />
-                        <CardContent className="p-8">
-                            <div className="flex justify-between items-start mb-6">
-                                <Avatar className="w-14 h-14 border-4 border-white shadow-md">
-                                    <AvatarFallback className={`bg-gradient-to-br from-blue-600 to-blue-400 text-white font-bold`}>
-                                        {persona.name.charAt(0)}
-                                    </AvatarFallback>
-                                </Avatar>
-                                <div className="bg-green-50 text-green-600 px-2 py-1 rounded-full text-[10px] font-bold flex items-center gap-1">
-                                    <TrendingUp className="w-3 h-3" />
-                                    {persona.growth || '+0%'}
-                                </div>
-                            </div>
-                            <h3 className="text-xl font-bold mb-2">{persona.name}</h3>
-                            <p className="text-sm text-gray-500 font-medium mb-6 leading-relaxed">
-                                {persona.description}
-                            </p>
-                            <div className="flex flex-wrap gap-2 mb-8">
-                                {persona.traits?.map((trait) => (
-                                    <Badge key={trait} variant="secondary" className="bg-gray-50 text-gray-500 border-none font-bold rounded-lg px-2.5 py-1">
-                                        {trait}
-                                    </Badge>
-                                ))}
-                            </div>
-                            <div className="flex items-center justify-between pt-6 border-t border-gray-50">
-                                <div className="space-y-0.5">
-                                    <p className="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Total Members</p>
-                                    <p className="text-lg font-bold text-gray-900">{/*persona.count*/ 0}</p>
-                                </div>
-                                <Button variant="ghost" size="icon" className="rounded-full bg-gray-50 hover:bg-gray-100">
-                                    <ChevronRight className="w-5 h-5 text-gray-400" />
+            {initialPersonas.length === 0 ? (
+                <Card className="border-dashed border-2 border-gray-200 bg-gray-50/50 rounded-3xl p-12 flex flex-col items-center justify-center text-center space-y-4">
+                    <div className="w-16 h-16 rounded-full bg-white border border-gray-100 flex items-center justify-center shadow-sm">
+                        <Users className="w-8 h-8 text-gray-400" />
+                    </div>
+                    <div className="max-w-md space-y-2">
+                        <h3 className="text-xl font-bold text-gray-900">No Personas Generated Yet</h3>
+                        <p className="text-gray-500">
+                            Our smart analysis engine can analyze your subscriber data to create accurate profiles of your typical readers.
+                            Click "Generate" to see who is reading your work!
+                        </p>
+                    </div>
+                    <Button onClick={handleGenerate} disabled={isGenerating} variant="outline" className="mt-4">
+                        Generate First Persona
+                    </Button>
+                </Card>
+            ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {initialPersonas.map((persona) => (
+                        <Card key={persona.id} className="border-none shadow-[0_8px_30px_rgb(0,0,0,0.04)] bg-white rounded-3xl p-6 flex flex-col gap-6 relative group">
+                            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <Button size="icon" variant="ghost" className="h-8 w-8 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-full" onClick={() => handleDelete(persona.id)}>
+                                    <Trash2 className="w-4 h-4" />
                                 </Button>
                             </div>
-                        </CardContent>
-                    </Card>
-                ))}
-                {initialPersonas.length === 0 && (
-                    <div className="col-span-3 text-center p-12 text-muted-foreground bg-gray-50 rounded-xl">
-                        No personas generated yet.
-                    </div>
-                )}
-            </div>
 
-            {/* Insights Section (Mock) */}
-            <div className="grid grid-cols-12 gap-6">
-                <Card className="col-span-12 lg:col-span-8 border-none shadow-[0_8px_30px_rgb(0,0,0,0.04)] bg-white rounded-3xl p-8">
-                    <div className="flex items-center justify-between mb-8">
-                        <CardTitle className="text-xl font-bold">Audience Insights</CardTitle>
-                        <div className="flex items-center gap-2">
-                            <div className="relative">
-                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                                <input className="pl-9 pr-4 py-2 bg-gray-50 border-none rounded-xl text-sm w-48 focus:w-64 transition-all" placeholder="Analyze segment..." />
+                            <div className="flex items-center gap-4">
+                                <div className="w-16 h-16 rounded-2xl overflow-hidden bg-gray-100 ring-2 ring-gray-50">
+                                    <Image
+                                        src={persona.avatarUrl || `https://api.dicebear.com/7.x/notionists/svg?seed=${persona.name}`}
+                                        alt={persona.name}
+                                        width={64}
+                                        height={64}
+                                    />
+                                </div>
+                                <div>
+                                    <h3 className="text-lg font-bold text-gray-900">{persona.name.split('(')[0]}</h3>
+                                    <p className="text-xs text-gray-400 font-medium">Generated {new Date(persona.createdAt || new Date()).toLocaleDateString()}</p>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    {/* ... keeping static charts for visual fidelity ... */}
-                    <div className="space-y-6">
-                        <div className="text-center text-gray-400 py-10">AI Analysis Module requires more data to populate insights.</div>
-                    </div>
-                </Card>
 
-                <Card className="col-span-12 lg:col-span-4 border-none shadow-[0_8px_30px_rgb(0,0,0,0.04)] bg-white rounded-3xl p-8 relative overflow-hidden group h-full">
-                    <div className="absolute inset-0 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 opacity-95 group-hover:scale-110 transition-transform duration-700" />
-                    <div className="relative z-10 h-full flex flex-col justify-between text-white">
-                        <div className="space-y-4">
-                            <div className="bg-white/20 backdrop-blur-md w-12 h-12 rounded-2xl flex items-center justify-center border border-white/20">
-                                <Zap className="w-6 h-6" />
+                            <div className="space-y-2">
+                                <p className="text-sm text-gray-600 leading-relaxed font-medium">
+                                    {persona.description}
+                                </p>
                             </div>
-                            <h3 className="text-3xl font-bold leading-tight">AI Persona Matching</h3>
-                            <p className="text-white/80 font-medium">
-                                Our AI is ready to identify new subscribers that match your personas.
-                            </p>
-                        </div>
-                        <Button className="w-full rounded-2xl bg-white text-indigo-600 font-bold py-6 hover:bg-white/90">
-                            Auto-assign Segments
-                            <ChevronRight className="w-4 h-4 ml-2" />
-                        </Button>
-                    </div>
-                </Card>
-            </div>
+
+                            <div className="space-y-3 pt-4 border-t border-gray-50">
+                                <p className="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Key Traits</p>
+                                <div className="flex flex-wrap gap-2">
+                                    {Object.entries(persona.traits as Record<string, any>).map(([key, value]) => (
+                                        <Badge key={key} variant="secondary" className="bg-gray-100 text-gray-600 border-none font-bold rounded-lg">
+                                            {key}: {value}
+                                        </Badge>
+                                    ))}
+                                </div>
+                            </div>
+                        </Card>
+                    ))}
+                </div>
+            )}
         </div>
     );
 }

@@ -12,7 +12,7 @@ export async function authenticate(
     formData: FormData,
 ) {
     try {
-        await signIn("credentials", formData);
+        await signIn("credentials", { ...Object.fromEntries(formData), redirectTo: "/dashboard" });
     } catch (error) {
         if (error instanceof AuthError) {
             switch (error.type) {
@@ -26,10 +26,13 @@ export async function authenticate(
     }
 }
 
+
+
 export async function register(formData: FormData) {
     const name = formData.get("name") as string;
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
+    const substackUrl = formData.get("substackUrl") as string;
 
     if (!email || !password) {
         return { error: "Email and password are required" };
@@ -50,8 +53,31 @@ export async function register(formData: FormData) {
         name: name || email.split("@")[0],
         email,
         password: hashedPassword,
-        // Default role and plan are set in schema
+        substackUrl: substackUrl || null,
     });
+
+    return { success: true };
+}
+
+export async function resetPassword(formData: FormData) {
+    const email = formData.get("email") as string;
+
+    if (!email) {
+        return { error: "Email is required" };
+    }
+
+    // Check if user exists
+    const existingUser = await db.query.users.findFirst({
+        where: eq(users.email, email),
+    });
+
+    if (!existingUser) {
+        // Return success even if user not found to prevent enumeration
+        return { success: true };
+    }
+
+    // TODO: Implement actual email sending logic here
+    console.log(`[Mock] Password reset email sent to ${email}`);
 
     return { success: true };
 }

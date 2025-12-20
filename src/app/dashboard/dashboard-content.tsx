@@ -30,33 +30,33 @@ import {
 import { Badge } from "@/components/ui/badge";
 
 const retentionData = [
-    { name: "Jan", value: 30 },
-    { name: "Feb", value: 45 },
-    { name: "Mar", value: 38 },
-    { name: "Apr", value: 52 },
-    { name: "May", value: 42 },
-    { name: "Jun", value: 48 },
-    { name: "Jul", value: 42 },
+    { name: "Jan", value: 0 },
+    { name: "Feb", value: 0 },
+    { name: "Mar", value: 0 },
+    { name: "Apr", value: 0 },
+    { name: "May", value: 0 },
+    { name: "Jun", value: 0 },
+    { name: "Jul", value: 0 },
 ];
 
 const transactionsData = [
-    { name: "M", value: 30 },
-    { name: "T", value: 40 },
-    { name: "W", value: 60 },
-    { name: "T", value: 45 },
-    { name: "F", value: 50 },
-    { name: "S", value: 35 },
-    { name: "S", value: 40 },
+    { name: "M", value: 0 },
+    { name: "T", value: 0 },
+    { name: "W", value: 0 },
+    { name: "T", value: 0 },
+    { name: "F", value: 0 },
+    { name: "S", value: 0 },
+    { name: "S", value: 0 },
 ];
 
 const customersData = [
-    { name: "M", value: 20 },
-    { name: "T", value: 35 },
-    { name: "W", value: 30 },
-    { name: "T", value: 55 },
-    { name: "F", value: 40 },
-    { name: "S", value: 25 },
-    { name: "S", value: 30 },
+    { name: "M", value: 0 },
+    { name: "T", value: 0 },
+    { name: "W", value: 0 },
+    { name: "T", value: 0 },
+    { name: "F", value: 0 },
+    { name: "S", value: 0 },
+    { name: "S", value: 0 },
 ];
 
 interface DashboardContentProps {
@@ -180,7 +180,7 @@ export default function DashboardContent({ metrics }: DashboardContentProps) {
                             </div>
                             <div className="relative mb-4">
                                 <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-8 bg-white shadow-lg border border-gray-50 rounded-full px-3 py-1 text-xs font-bold text-gray-900 z-10">
-                                    42%
+                                    -%
                                 </div>
                                 <div className="h-[180px] w-full">
                                     <ResponsiveContainer width="100%" height="100%">
@@ -279,8 +279,7 @@ export default function DashboardContent({ metrics }: DashboardContentProps) {
 
                         <div className="space-y-8">
                             {[
-                                { label: "Online Payments", value: `$${(grossVolume * 0.7).toFixed(0)}`, color: "bg-green-500", percent: 70 },
-                                { label: "Subscriptions", value: `$${(grossVolume * 0.3).toFixed(0)}`, color: "bg-blue-500", percent: 30 },
+                                { label: "Total Revenue", value: `$${grossVolume.toFixed(0)}`, color: "bg-green-500", percent: 100 },
                             ].map((item) => (
                                 <div key={item.label} className="space-y-3">
                                     <div className="flex justify-between items-center text-sm font-bold">
@@ -311,10 +310,10 @@ export default function DashboardContent({ metrics }: DashboardContentProps) {
                                     </div>
 
                                     <div className="space-y-4">
-                                        <div className="text-6xl font-bold tracking-tighter">75%</div>
+                                        <div className="text-6xl font-bold tracking-tighter">--%</div>
                                         <div className="space-y-2">
                                             <p className="text-xl font-bold leading-tight">
-                                                Authorization rate increased by 4% compared to last week.
+                                                Not enough data for insights yet.
                                             </p>
                                         </div>
                                     </div>
