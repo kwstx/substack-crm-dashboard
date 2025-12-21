@@ -194,10 +194,10 @@ export default function SettingsContent({ user }: SettingsContentProps) {
                             {integrations.map((integration) => (
                                 <div
                                     key={integration.name}
-                                    className="flex items-center justify-between p-6 rounded-[2rem] border border-gray-50 hover:border-orange-100 hover:bg-orange-50/10 transition-all group bg-white"
+                                    className="flex flex-col md:flex-row md:items-center justify-between p-6 rounded-[2rem] border border-gray-50 hover:border-orange-100 hover:bg-orange-50/10 transition-all group bg-white gap-6"
                                 >
                                     <div className="flex items-center gap-6">
-                                        <div className="w-20 h-20 rounded-3xl bg-[#FF6719]/10 shadow-sm border border-[#FF6719]/10 flex items-center justify-center overflow-hidden p-4 group-hover:scale-105 transition-transform">
+                                        <div className="w-20 h-20 rounded-3xl bg-[#FF6719]/10 shadow-sm border border-[#FF6719]/10 flex items-center justify-center overflow-hidden p-4 group-hover:scale-105 transition-transform shrink-0">
                                             <img
                                                 src={integration.icon}
                                                 alt={integration.name}
@@ -219,7 +219,7 @@ export default function SettingsContent({ user }: SettingsContentProps) {
                                     </div>
                                     <Button
                                         variant={integration.connected ? "outline" : "default"}
-                                        className={`rounded-full px-8 h-12 font-bold transition-all ${integration.connected
+                                        className={`rounded-full px-8 h-12 font-bold transition-all w-full md:w-auto ${integration.connected
                                             ? "border-gray-200 text-gray-600 hover:bg-gray-50"
                                             : "bg-[#FF6719] text-white shadow-lg shadow-[#FF6719]/20 hover:bg-[#FF6719]/90"
                                             }`}
