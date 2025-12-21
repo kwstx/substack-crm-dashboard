@@ -58,9 +58,9 @@ export function ImportDialog() {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button variant="outline" className="rounded-xl border-gray-200 shadow-sm font-bold text-gray-600 gap-2">
-                    <Upload className="h-4 w-4" />
-                    Import
+                <Button variant="outline" className="rounded-xl border-gray-200 shadow-sm font-bold text-gray-600 gap-2 px-3 md:px-4 h-9 md:h-10">
+                    <Upload className="h-4 w-4 md:mr-2" />
+                    <span className="hidden md:inline">Import</span>
                 </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">

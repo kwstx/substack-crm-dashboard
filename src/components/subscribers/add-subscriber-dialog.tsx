@@ -46,9 +46,9 @@ export function AddSubscriberDialog() {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button className="rounded-full bg-black hover:bg-black/90 text-white px-6 font-bold shadow-lg shadow-black/10">
-                    <UserPlus className="w-4 h-4 mr-2" />
-                    Add Subscriber
+                <Button className="rounded-full bg-black hover:bg-black/90 text-white shadow-lg shadow-black/10 px-3 md:px-6 h-9 md:h-10 font-bold">
+                    <UserPlus className="w-4 h-4 md:mr-2" />
+                    <span className="hidden md:inline">Add Subscriber</span>
                 </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px] rounded-3xl p-6">

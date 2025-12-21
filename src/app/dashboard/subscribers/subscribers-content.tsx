@@ -157,7 +157,7 @@ export default function SubscribersContent({ initialSubscribers, initialSegments
 
     return (
         <div className="space-y-6">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                     <div className="flex items-center gap-3">
                         <h1 className="text-2xl font-bold tracking-tight text-gray-900">Customers</h1>
@@ -202,9 +202,9 @@ export default function SubscribersContent({ initialSubscribers, initialSegments
             </div>
 
             <Card className="border-none shadow-[0_8px_30px_rgb(0,0,0,0.04)] bg-white rounded-[2.5rem] overflow-hidden border border-gray-100/50">
-                <div className="p-8 border-b border-gray-50 bg-white flex items-center justify-between">
-                    <div className="flex items-center gap-4 flex-1">
-                        <div className="relative flex-1 max-w-md">
+                <div className="p-4 md:p-8 border-b border-gray-50 bg-white">
+                    <div className="flex flex-col md:flex-row items-stretch md:items-center gap-4">
+                        <div className="relative flex-1 w-full md:max-w-md">
                             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                             <input
                                 type="text"
@@ -215,56 +215,58 @@ export default function SubscribersContent({ initialSubscribers, initialSegments
                             />
                         </div>
 
-                        {/* Filters Dropdown */}
-                        <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                                <Button variant="outline" className={`rounded-full border-gray-100 h-11 px-6 font-bold ${hasActiveFilters ? 'text-blue-600 bg-blue-50 border-blue-200' : 'text-gray-600'}`}>
-                                    <Filter className="w-4 h-4 mr-2" />
-                                    Filters
-                                </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="start" className="w-56 rounded-2xl p-2">
-                                <DropdownMenuLabel className="px-2 py-1.5 text-xs text-gray-400 uppercase">Status</DropdownMenuLabel>
-                                <DropdownMenuCheckboxItem className="rounded-xl px-2 py-1.5" checked={filters.status === 'paid'} onCheckedChange={() => handleFilterChange('status', filters.status === 'paid' ? 'all' : 'paid')}>Paid</DropdownMenuCheckboxItem>
-                                <DropdownMenuCheckboxItem className="rounded-xl px-2 py-1.5" checked={filters.status === 'free'} onCheckedChange={() => handleFilterChange('status', filters.status === 'free' ? 'all' : 'free')}>Free</DropdownMenuCheckboxItem>
-                                <DropdownMenuSeparator className="my-1" />
-                                <DropdownMenuLabel className="px-2 py-1.5 text-xs text-gray-400 uppercase">Engagement</DropdownMenuLabel>
-                                <DropdownMenuCheckboxItem className="rounded-xl px-2 py-1.5" checked={filters.engagement === 'high'} onCheckedChange={() => handleFilterChange('engagement', filters.engagement === 'high' ? 'all' : 'high')}>High</DropdownMenuCheckboxItem>
-                                <DropdownMenuCheckboxItem className="rounded-xl px-2 py-1.5" checked={filters.engagement === 'medium'} onCheckedChange={() => handleFilterChange('engagement', filters.engagement === 'medium' ? 'all' : 'medium')}>Medium</DropdownMenuCheckboxItem>
-                                <DropdownMenuCheckboxItem className="rounded-xl px-2 py-1.5" checked={filters.engagement === 'low'} onCheckedChange={() => handleFilterChange('engagement', filters.engagement === 'low' ? 'all' : 'low')}>Low</DropdownMenuCheckboxItem>
-                            </DropdownMenuContent>
-                        </DropdownMenu>
+                        <div className="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 no-scrollbar">
+                            {/* Filters Dropdown */}
+                            <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                    <Button variant="outline" className={`rounded-full border-gray-100 h-11 px-6 font-bold shrink-0 ${hasActiveFilters ? 'text-blue-600 bg-blue-50 border-blue-200' : 'text-gray-600'}`}>
+                                        <Filter className="w-4 h-4 mr-2" />
+                                        Filters
+                                    </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent align="start" className="w-56 rounded-2xl p-2">
+                                    <DropdownMenuLabel className="px-2 py-1.5 text-xs text-gray-400 uppercase">Status</DropdownMenuLabel>
+                                    <DropdownMenuCheckboxItem className="rounded-xl px-2 py-1.5" checked={filters.status === 'paid'} onCheckedChange={() => handleFilterChange('status', filters.status === 'paid' ? 'all' : 'paid')}>Paid</DropdownMenuCheckboxItem>
+                                    <DropdownMenuCheckboxItem className="rounded-xl px-2 py-1.5" checked={filters.status === 'free'} onCheckedChange={() => handleFilterChange('status', filters.status === 'free' ? 'all' : 'free')}>Free</DropdownMenuCheckboxItem>
+                                    <DropdownMenuSeparator className="my-1" />
+                                    <DropdownMenuLabel className="px-2 py-1.5 text-xs text-gray-400 uppercase">Engagement</DropdownMenuLabel>
+                                    <DropdownMenuCheckboxItem className="rounded-xl px-2 py-1.5" checked={filters.engagement === 'high'} onCheckedChange={() => handleFilterChange('engagement', filters.engagement === 'high' ? 'all' : 'high')}>High</DropdownMenuCheckboxItem>
+                                    <DropdownMenuCheckboxItem className="rounded-xl px-2 py-1.5" checked={filters.engagement === 'medium'} onCheckedChange={() => handleFilterChange('engagement', filters.engagement === 'medium' ? 'all' : 'medium')}>Medium</DropdownMenuCheckboxItem>
+                                    <DropdownMenuCheckboxItem className="rounded-xl px-2 py-1.5" checked={filters.engagement === 'low'} onCheckedChange={() => handleFilterChange('engagement', filters.engagement === 'low' ? 'all' : 'low')}>Low</DropdownMenuCheckboxItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
 
-                        {/* Segments Dropdown */}
-                        <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                                <Button variant="outline" className="rounded-full border-gray-100 h-11 px-6 font-bold text-gray-600">
-                                    Segments
-                                </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="start" className="w-64 rounded-2xl p-2">
-                                <DropdownMenuLabel className="px-2 py-1.5 text-xs text-gray-400 uppercase">My Segments</DropdownMenuLabel>
-                                {segments.length === 0 && <span className="p-3 text-xs text-muted-foreground block text-center">No segments saved.</span>}
-                                {segments.map(segment => (
-                                    <DropdownMenuItem key={segment.id} onClick={() => handleSegmentSelect(segment.id)} className="flex justify-between max-w-full rounded-xl px-2 py-2 cursor-pointer">
-                                        <span className="truncate flex-1 font-medium">{segment.name}</span>
-                                        <div onClick={(e) => handleDeleteSegment(segment.id, e)} className="p-1 hover:bg-red-100 rounded-lg text-gray-400 hover:text-red-500 cursor-pointer transition-colors">
-                                            <Trash2 className="w-3 h-3" />
-                                        </div>
+                            {/* Segments Dropdown */}
+                            <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                    <Button variant="outline" className="rounded-full border-gray-100 h-11 px-6 font-bold text-gray-600 shrink-0">
+                                        Segments
+                                    </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent align="start" className="w-64 rounded-2xl p-2">
+                                    <DropdownMenuLabel className="px-2 py-1.5 text-xs text-gray-400 uppercase">My Segments</DropdownMenuLabel>
+                                    {segments.length === 0 && <span className="p-3 text-xs text-muted-foreground block text-center">No segments saved.</span>}
+                                    {segments.map(segment => (
+                                        <DropdownMenuItem key={segment.id} onClick={() => handleSegmentSelect(segment.id)} className="flex justify-between max-w-full rounded-xl px-2 py-2 cursor-pointer">
+                                            <span className="truncate flex-1 font-medium">{segment.name}</span>
+                                            <div onClick={(e) => handleDeleteSegment(segment.id, e)} className="p-1 hover:bg-red-100 rounded-lg text-gray-400 hover:text-red-500 cursor-pointer transition-colors">
+                                                <Trash2 className="w-3 h-3" />
+                                            </div>
+                                        </DropdownMenuItem>
+                                    ))}
+                                    {segments.length > 0 && <DropdownMenuSeparator className="my-1" />}
+                                    <DropdownMenuItem className="rounded-xl px-2 py-2 cursor-pointer font-medium text-gray-500" onClick={() => handleSegmentSelect('all')}>
+                                        All Subscribers
                                     </DropdownMenuItem>
-                                ))}
-                                {segments.length > 0 && <DropdownMenuSeparator className="my-1" />}
-                                <DropdownMenuItem className="rounded-xl px-2 py-2 cursor-pointer font-medium text-gray-500" onClick={() => handleSegmentSelect('all')}>
-                                    All Subscribers
-                                </DropdownMenuItem>
-                            </DropdownMenuContent>
-                        </DropdownMenu>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
 
-                        {hasActiveFilters && !filters.segmentId && (
-                            <Button variant="ghost" onClick={() => setSaveSegmentOpen(true)} className="text-blue-600 font-bold text-sm rounded-full hover:bg-blue-50">
-                                Save Segment
-                            </Button>
-                        )}
+                            {hasActiveFilters && !filters.segmentId && (
+                                <Button variant="ghost" onClick={() => setSaveSegmentOpen(true)} className="text-blue-600 font-bold text-sm rounded-full hover:bg-blue-50 shrink-0">
+                                    Save Segment
+                                </Button>
+                            )}
+                        </div>
                     </div>
                 </div>
 
