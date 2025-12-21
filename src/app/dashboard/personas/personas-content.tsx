@@ -60,7 +60,7 @@ export default function PersonasContent({ initialPersonas }: PersonasContentProp
         <div className="space-y-6">
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                    <h1 className="text-4xl font-bold tracking-tight text-gray-900">Audience Personas</h1>
+                    <h1 className="text-2xl md:text-4xl font-bold tracking-tight text-gray-900">Audience Personas</h1>
                     <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center border border-purple-200">
                         <Users className="w-4 h-4 text-purple-600" />
                     </div>
@@ -68,10 +68,10 @@ export default function PersonasContent({ initialPersonas }: PersonasContentProp
                 <Button
                     onClick={handleGenerate}
                     disabled={isGenerating}
-                    className="rounded-xl bg-black text-white px-6 shadow-lg shadow-black/10 font-bold gap-2"
+                    className="rounded-xl bg-black text-white px-3 md:px-6 h-9 md:h-10 shadow-lg shadow-black/10 font-bold gap-2"
                 >
                     <Sparkles className="w-4 h-4" />
-                    {isGenerating ? "Analyzing..." : "Generate New Persona"}
+                    <span className="hidden md:inline">{isGenerating ? "Analyzing..." : "Generate New Persona"}</span>
                 </Button>
             </div>
 
